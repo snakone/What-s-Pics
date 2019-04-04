@@ -1,0 +1,7 @@
+.tab-selected {
+  color: var(--ion-color-pink-tint);
+
+  & ion-label {
+    color: var(--ion-color-light);
+  }
+}

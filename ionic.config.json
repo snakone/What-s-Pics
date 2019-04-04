@@ -1,0 +1,8 @@
+{
+  "name": "Seed",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "395ebf74"
+}
