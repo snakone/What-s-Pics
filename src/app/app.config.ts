@@ -10,11 +10,13 @@ export interface ModuleConfig {
 export interface AppConfig extends ModuleConfig {
   TITLE: string;
   DEFAULT_LANGUAGE: string;
+  END_POINT: string;
 }
 
 export const APP_CONSTANTS: AppConfig = {
   TITLE: 'What The Pics',
   DEFAULT_LANGUAGE: 'en',
+  END_POINT: 'http://localhost:3000/',
   NAVIGATION: {
     EMPTY: '',
     ROOT: '',

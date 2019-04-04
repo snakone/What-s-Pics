@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Storage } from '@ionic/storage';
+import { Component, OnInit } from '@angular/core';
+import { PostService } from '@app/core/services/post/post.service';
+import { PostResponse, Post } from '@app/shared/interfaces/interfaces';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +8,17 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['home.page.scss'],
 })
 
-export class HomePage {
+export class HomePage implements OnInit {
 
-  constructor(private translate: TranslateService,
-      private storage: Storage) {}
+  posts: Post[] = [];
 
-  setLanguage(lang: string): void {
-    this.translate.use(lang);
-    this.storage.set('language', lang);
+  constructor(private postService: PostService) { }
+
+  ngOnInit(): void {
+    this.postService.getPosts()
+      .subscribe((res: PostResponse) => {
+        this.posts.push(...res.posts);
+      });
   }
+
 }
