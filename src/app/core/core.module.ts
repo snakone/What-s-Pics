@@ -9,6 +9,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LanguageModule } from './language/language.module';
 import { CORE_MODULE_CONSTANTS, CORE_MODULE_CONFIG } from './core.module.config';
 import { LanguageService } from './language/services/language.service';
+import { PostService } from './services/post/post.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,
@@ -34,7 +35,8 @@ export function createTranslateLoader(http: HttpClient) {
     HttpService,
     { provide: CORE_MODULE_CONFIG, useValue: CORE_MODULE_CONSTANTS },
     { provide: ErrorHandler, useClass: ErrorHandlerService },
-    LanguageService
+    LanguageService,
+    PostService
   ]
 })
 
