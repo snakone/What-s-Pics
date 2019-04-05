@@ -1,8 +1,8 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom" color="dark">
-    <ion-tab-button tab="home">
-      <ion-icon name="home" size="large"></ion-icon>
-      <ion-label>{{('tab.home' | translate) | uppercase}}</ion-label>
+    <ion-tab-button *ngFor="let t of tabs" [tab]="t.tab">
+      <ion-icon [name]="t.icon" size="large"></ion-icon>
+      <ion-label>{{t.label | translate}}</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

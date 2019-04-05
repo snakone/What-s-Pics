@@ -1,0 +1,28 @@
+ion-card {
+  & .section {
+    --background: var(--ion-color-pink-tint);
+  }
+
+  & .content {
+    --background: var(--ion-color-pink-dark);
+
+    &-label {
+      padding: 5px 5px 5px 0;
+    }
+  }
+}
+
+ion-slides {
+  --bullet-background: var(--ion-color-light);
+  --bullet-background-active: var(--ion-color-pink-dark);
+}
+
+ion-slide {
+  width: auto;
+  min-width: 100%;
+  max-width: 371px;
+  height: 250px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
