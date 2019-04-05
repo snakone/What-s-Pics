@@ -2,10 +2,4 @@
   <ion-router-outlet></ion-router-outlet>
 </ion-app>
 
-<div *ngIf="showSplash" class="splash">
-  <div class="lds-dual-ring">
-    <div class="app-version">
-      {{version}}
-    </div>
-  </div>
-</div>
+<app-loader *ngIf="show" [version]="version"></app-loader>

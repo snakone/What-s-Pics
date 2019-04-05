@@ -1,0 +1,35 @@
+<ion-content text-center>
+  <ion-slides #slides [options]="slidesOpts" class="swiper-no-swiping">
+    <ion-slide>
+      <app-sign-in></app-sign-in>
+    </ion-slide>
+    <ion-slide>
+      <app-sign-up></app-sign-up>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+<ion-footer no-border>
+  <ion-toolbar padding mode="md">
+    <ion-segment (ionChange)="segmentChanged($event.detail)"
+                  mode="md">
+      <ion-segment-button value="0" mode="md">
+        <ion-button shape="round"
+                    expand="full"
+                    [color]="colorIn"
+                    fill="outline"
+                    mode="md">SIGN IN
+        </ion-button>
+      </ion-segment-button>
+      <ion-segment-button value="1" mode="md">
+        <ion-button shape="round"
+                    expand="full"
+                    [color]="colorUp"
+                    fill="outline"
+                    mode="md">SIGN UP
+        </ion-button>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
+
+

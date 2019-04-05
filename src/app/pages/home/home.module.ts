@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
 import { SharedModule } from '@app/shared/shared.module';
 import { ComponentsModule } from '@app/shared/components/components.module';
+import { PostCardComponent } from './components/post-card/post-card.component';
+import { PostGridComponent } from './components/post-grid/post-grid.component';
 
 @NgModule({
   imports: [
@@ -14,6 +16,7 @@ import { ComponentsModule } from '@app/shared/components/components.module';
     FormsModule,
     IonicModule,
     ComponentsModule,
+    SharedModule,
     RouterModule.forChild([
       {
         path: '',
@@ -21,7 +24,10 @@ import { ComponentsModule } from '@app/shared/components/components.module';
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [
+    HomePage,
+    PostGridComponent,
+    PostCardComponent]
 })
 
 export class HomePageModule {}

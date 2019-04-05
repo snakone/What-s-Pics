@@ -15,7 +15,7 @@ import { timer } from 'rxjs';
 
 export class AppComponent {
 
-  showSplash = true;
+  show = true;
   version = '0.0.1-public';
 
   constructor(
@@ -32,7 +32,7 @@ export class AppComponent {
       this.statusBar.styleLightContent();
       this.splashScreen.hide();
       timer(3000).subscribe(() => {
-        this.showSplash = false;
+        this.show = false;
       });
     });
     this.translate.setDefaultLang(APP_CONSTANTS.DEFAULT_LANGUAGE);

@@ -1,0 +1,32 @@
+<form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+  <img src="assets/img/avatars/av-1.png"/>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input name="email"
+                 type="email"
+                 formControlName="email"
+                 value="snak_one@hotmail.com"
+                 mode="md">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input name="password"
+                 type="password"
+                 formControlName="password"
+                 value="ionic"
+                 mode="md">
+      </ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button type="submit"
+              expand="full"
+              color="primary"
+              shape="round"
+              mode="md"
+              [disabled]="signInForm.invalid">
+    Login
+  </ion-button>
+</form>
