@@ -1,0 +1,43 @@
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+  <h3>Select an Avatar</h3>
+  <ion-slides [options]="slidesAvatarOpts">
+      <ion-slide *ngFor="let avatar of avatars">
+          <img class="pick-avatar"
+                  src="assets/img/avatars/{{avatar.img}}"
+                  [ngClass]="{'pick-avatar-selected' : avatar.selected}"
+                  (click)="pickAvatar(avatar)"/>
+      </ion-slide>
+  </ion-slides>
+  <ion-list>
+    <ion-item>
+        <ion-label position="floating">Name</ion-label>
+          <ion-input name="name" type="text" mode="md" formControlName="name">
+        </ion-input>
+      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+        <ion-input name="email" mode="md" formControlName="email">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+        <ion-input name="password" type="password" mode="md" formControlName="password"
+        [ngClass]="{'valid': !matchError}">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Repeat Password</ion-label>
+        <ion-input name="password2" type="password" mode="md" formControlName="password2"
+                   [ngClass]="matchError === true ? 'invalid' : 'valid'">
+      </ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button type="submit"
+              expand="full"
+              color="primary"
+              shape="round"
+              [disabled]="signUpForm.invalid"
+              mode="md">
+    Create
+  </ion-button>
+</form>

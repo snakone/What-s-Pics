@@ -1,0 +1,11 @@
+ion-slides {
+  height: 100%;
+}
+
+ion-segment-button {
+  --color-checked: var(--ion-color-pink);
+}
+
+.segment-button-checked ion-button {
+  color: var(--ion-color-warning) !important;
+}

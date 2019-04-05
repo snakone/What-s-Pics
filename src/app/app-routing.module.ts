@@ -3,7 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', loadChildren: './pages/tabs/tabs.module#TabsPageModule' },
-  { path: '**', loadChildren: './shared/components/error404/error404.module#Error404PageModule' },
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
+  { path: '**', loadChildren: './shared/components/error404/error404.module#Error404PageModule' }
 ];
 
 @NgModule({
