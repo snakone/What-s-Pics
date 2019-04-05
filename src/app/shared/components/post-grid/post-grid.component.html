@@ -1,0 +1,8 @@
+<ion-grid>
+  <ion-row>
+    <ion-col size="12" size-lg="6" size-md="6" size-sm="6" size-xs="12"
+            *ngFor="let post of posts">
+      <app-post-card [post]="post"></app-post-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

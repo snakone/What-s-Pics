@@ -1,0 +1,29 @@
+<ion-card>
+  <ion-item lines="none" class="section">
+    <ion-avatar slot="start">
+      <img src="assets/img/avatars/av-1.png"/>
+    </ion-avatar>
+    <ion-label>
+      <h3>{{post.user.name}}</h3>
+      <h5>{{post.user.email}}</h5>
+    </ion-label>
+  </ion-item>
+  <ion-slides #slides pager="true" [options]="slideOpts">
+    <ion-slide [style]="img1 | sanitizer">
+  </ion-slide>
+  <ion-slide [style]="img2 | sanitizer">
+    </ion-slide>
+  <ion-slide [style]="img3 | sanitizer">
+  </ion-slide>
+  </ion-slides>
+  <ion-item lines="none" class="content">
+    <ion-label class="content-label" text-wrap>
+      {{post.message}}
+    </ion-label>
+  </ion-item>
+  <ion-item lines="none" class="section">
+    <ion-label>{{post.created}}</ion-label>
+    <ion-icon slot="end" color="light" name="heart-empty"></ion-icon>
+    <ion-icon slot="end" color="light" name="bookmark"></ion-icon>
+  </ion-item>
+</ion-card>

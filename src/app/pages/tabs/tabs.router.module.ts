@@ -17,6 +17,33 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'add',
+        children: [
+          {
+            path: '',
+            loadChildren: '../add/add.module#AddPageModule'
+          }
+        ]
+      },
+      {
+        path: 'profile',
+        children: [
+          {
+            path: '',
+            loadChildren: '../profile/profile.module#ProfilePageModule'
+          }
+        ]
+      },
+      {
+        path: 'help',
+        children: [
+          {
+            path: '',
+            loadChildren: '../help/help.module#HelpPageModule'
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full'

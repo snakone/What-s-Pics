@@ -6,4 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['tabs.page.scss']
 })
 
-export class TabsPage {}
+export class TabsPage {
+  tabs: any = [
+    { tab: 'home', icon: 'home', label: 'tab.home' },
+    { tab: 'add', icon: 'add-circle-outline', label: 'tab.add' },
+    { tab: 'profile', icon: 'person', label: 'tab.profile' },
+    { tab: 'help', icon: 'help', label: 'tab.help' }
+  ];
+}

@@ -22,7 +22,8 @@
     margin: 1px;
     border-radius: 50%;
     border: 5px solid var(--ion-color-light);
-    border-color: var(--ion-color-light) transparent var(--ion-color-light) transparent;
+    border-color: var(--ion-color-light) transparent
+                  var(--ion-color-light) transparent;
     animation: lds-dual-ring 1.2s linear infinite;
   }
   @keyframes lds-dual-ring {

@@ -8,15 +8,15 @@ import { PostResponse } from '@app/shared/interfaces/interfaces';
 
 export class PostService {
 
-  page = 0;
+  public page = 0;
 
-  readonly API_POST = APP_CONSTANTS.END_POINT + `posts?page=${this.page}`;
+  readonly API_POST = APP_CONSTANTS.END_POINT + 'posts?page=';
 
   constructor(private http: HttpService) { }
 
   getPosts(): Observable<PostResponse> {
     this.page++;
-    return this.http.get(this.API_POST);
+    return this.http.get(this.API_POST + this.page);
   }
 
 }

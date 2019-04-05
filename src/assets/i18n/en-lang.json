@@ -1,3 +1,6 @@
 {
-  "tab.home": "Home"
+  "tab.home": "Home",
+  "tab.add": "Add",
+  "tab.profile": "Profile",
+  "tab.help": "Help"
 }
