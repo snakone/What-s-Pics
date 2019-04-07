@@ -2,14 +2,13 @@ import { NgModule, Optional, SkipSelf, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
-import { HttpService } from '@core/services/http/http.service';
 import { ErrorHandlerService } from '@core/error-handler/error-handler.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LanguageModule } from './language/language.module';
 import { CORE_MODULE_CONSTANTS, CORE_MODULE_CONFIG } from './core.module.config';
 import { LanguageService } from './language/services/language.service';
-import { PostService } from './services/post/post.service';
+import { ServicesModule } from './services/services.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,
@@ -20,6 +19,7 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     CommonModule,
     HttpClientModule,
+    ServicesModule,
     IonicStorageModule.forRoot(),
     LanguageModule.forRoot(),
     TranslateModule.forRoot({
@@ -32,11 +32,9 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   declarations: [],
   providers: [
-    HttpService,
-    { provide: CORE_MODULE_CONFIG, useValue: CORE_MODULE_CONSTANTS },
-    { provide: ErrorHandler, useClass: ErrorHandlerService },
     LanguageService,
-    PostService
+    { provide: CORE_MODULE_CONFIG, useValue: CORE_MODULE_CONSTANTS },
+    { provide: ErrorHandler, useClass: ErrorHandlerService }
   ]
 })
 

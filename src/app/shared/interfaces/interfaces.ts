@@ -5,6 +5,13 @@ export interface PostResponse {
   posts: Post[];
 }
 
+export interface UserResponse {
+  ok: boolean;
+  message: string;
+  user: User;
+  token?: string;
+}
+
 export interface Post {
   _id: string;
   img?: string[];
@@ -15,8 +22,20 @@ export interface Post {
 }
 
 export interface User {
-  _id: string;
+  _id?: string;
   avatar?: string;
   name: string;
   email: string;
+  password: string;
+}
+
+export class AppStorage {
+  id?: string;
+  language?: string;
+  posts?: Post[];
+  token?: string;
+
+  constructor(token: string = '') {
+    this.token = token;
+  }
 }

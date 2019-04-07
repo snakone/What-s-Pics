@@ -9,10 +9,11 @@ import { PostResponse } from '@app/shared/interfaces/interfaces';
 export class PostService {
 
   public page = 0;
-
   readonly API_POST = APP_CONSTANTS.END_POINT + 'posts?page=';
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService) {
+    console.log('PostService');
+   }
 
   getPosts(): Observable<PostResponse> {
     this.page++;

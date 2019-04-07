@@ -10,3 +10,11 @@
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
 @import './theme/partials/tab.animation.scss';
+
+.alert-message.sc-ion-alert-md {
+  padding-bottom: 0 !important;
+}
+
+.alert-title.sc-ion-alert-md {
+  color: var(--ion-color-dark) !important;
+}

@@ -13,6 +13,7 @@ export class HomePage implements OnInit {
   posts: Post[] = [];
   scroll = true;
   refresh = true;
+  loading = true;
 
   constructor(private postService: PostService) { }
 
@@ -20,13 +21,13 @@ export class HomePage implements OnInit {
     this.getPosts();
   }
 
-  getPosts(event?: any): void {
-    this.postService.getPosts()
-      .subscribe((res: PostResponse) => {
-        this.posts.push(...res.posts);
-        if (event) { event.target.complete(); }
-        if (event && res.posts.length === 0) {
-          this.scroll = false;
+  getPosts(event?: any) {
+    if (!event) { this.loading = true; }
+      this.postService.getPosts()
+      .subscribe(async (res: PostResponse) => {
+        if (res.ok) {
+          this.posts.push(...res.posts);
+          this.handleEvent(res.posts, event);
         }
     });
   }
@@ -44,6 +45,14 @@ export class HomePage implements OnInit {
 
   onScroll(event: any): void {
     this.getPosts(event);
+  }
+
+  private handleEvent(data: Post[], event?: any): void {
+    if (!event) { this.loading = false; }
+    if (event) { event.target.complete(); }
+    if (event && data.length === 0) {
+      this.scroll = false;
+    }
   }
 
 }

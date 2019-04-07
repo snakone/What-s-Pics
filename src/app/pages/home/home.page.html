@@ -1,15 +1,20 @@
 <ion-content text-center>
-  <ion-refresher slot="fixed"
-                 [disabled]="!refresh"
-                 (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  <app-post-grid [posts]="posts"></app-post-grid>
+  <div *ngIf="!loading">
+    <ion-refresher slot="fixed"
+                  [disabled]="!refresh"
+                  (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <app-post-grid [posts]="posts"></app-post-grid>
 
-  <ion-infinite-scroll threshold="150px"
-                       [disabled]="!scroll"
-                       (ionInfinite)="onScroll($event)">
-    <ion-infinite-scroll-content>
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    <ion-infinite-scroll threshold="150px"
+                        [disabled]="!scroll"
+                        (ionInfinite)="onScroll($event)">
+      <ion-infinite-scroll-content>
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+  <div *ngIf="loading">
+    <app-loader></app-loader>
+  </div>
 </ion-content>

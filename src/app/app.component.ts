@@ -6,6 +6,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { APP_CONSTANTS } from '@app/app.config';
 
 import { timer } from 'rxjs';
+import { StorageService, UserService } from './core/services/services.index';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-root',
@@ -38,4 +40,5 @@ export class AppComponent {
     this.translate.setDefaultLang(APP_CONSTANTS.DEFAULT_LANGUAGE);
     this.translate.use(APP_CONSTANTS.DEFAULT_LANGUAGE);
   }
+
 }

@@ -1,13 +1,3 @@
-.pick-avatar {
-  width: 70px;
-  opacity: 0.4;
-}
-
-.pick-avatar-selected {
-  transition: opacity 0.5s linear;
-  opacity: 1 !important;
-}
-
 .sc-ion-input-md-h {
   color: var(--ion-color-pink-tint);
   font-weight: bold;
@@ -20,11 +10,8 @@ form {
 }
 
 ion-list {
-  margin-bottom: 40px;
-}
-
-h3 {
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 45px;
 }
 
 .invalid {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService } from '@app/core/services/services.index';
 
 @Component({
   selector: 'app-help',
@@ -8,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 
 export class HelpPage implements OnInit {
 
-  constructor() { }
+  constructor(private storage: StorageService) { }
 
   ngOnInit() {
+  }
+
+  remove() {
+    this.storage.clear();
   }
 
 }

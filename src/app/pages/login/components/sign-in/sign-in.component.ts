@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { LoginService, StorageService, UserService } from '@app/core/services/services.index';
+import { User, UserResponse } from '@app/shared/interfaces/interfaces';
+import { CrafterService } from '@app/shared/crafter/crafter.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,11 +14,17 @@ import { Router } from '@angular/router';
 export class SignInComponent implements OnInit {
 
   signInForm: FormGroup;
+  user: User;
 
-  constructor(private router: Router) { }
+  constructor(private nav: NavController,
+              private login: LoginService,
+              private storage: StorageService,
+              private craft: CrafterService,
+              private userService: UserService) { }
 
   ngOnInit() {
     this.createSignUpForm();
+    this.getUser();
    }
 
   createSignUpForm(): void {
@@ -29,10 +38,31 @@ export class SignInComponent implements OnInit {
                                      Validators.maxLength(25)])});
   }
 
+  getUser(): void {
+    this.user = this.userService.getUser();
+  }
+
   onSubmit() {
     if (this.signInForm.invalid) { return false; }
-    console.log(this.signInForm.value);
-    this.router.navigateByUrl('/tabs/home');
+    const email = this.signInForm.value.email;
+    const password = this.signInForm.value.password;
+    this.signIn(email, password);
+  }
+
+  private signIn(e: string, p: string): void {
+    this.login.signIn(e, p)
+      .subscribe(async (res: UserResponse) => {
+        console.log(res);
+        if (res.ok) {
+          this.nav.navigateRoot('/tabs/home');
+          await this.storage.setToken(res.token);
+          this.craft.alert('Welcome! ' + res.user.name);
+        }
+      }, (err) => {
+          this.craft.alert('Invalid Credentials!');
+          this.storage.removeToken();
+          console.log(err);
+      });
   }
 
 }

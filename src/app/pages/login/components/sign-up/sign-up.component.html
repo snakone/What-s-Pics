@@ -1,34 +1,27 @@
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-  <h3>Select an Avatar</h3>
-  <ion-slides [options]="slidesAvatarOpts">
-      <ion-slide *ngFor="let avatar of avatars">
-          <img class="pick-avatar"
-                  src="assets/img/avatars/{{avatar.img}}"
-                  [ngClass]="{'pick-avatar-selected' : avatar.selected}"
-                  (click)="pickAvatar(avatar)"/>
-      </ion-slide>
-  </ion-slides>
+  <app-pick-avatar (avatar)="signUpForm.controls.avatar.value = $event"></app-pick-avatar>
+  <ion-input type="hidden" name="avatar" formControlName="avatar"></ion-input>
   <ion-list>
     <ion-item>
         <ion-label position="floating">Name</ion-label>
-          <ion-input name="name" type="text" mode="md" formControlName="name">
+          <ion-input name="name" value="Test" type="text" mode="md" formControlName="name">
         </ion-input>
       </ion-item>
     <ion-item>
       <ion-label position="floating">Email</ion-label>
-        <ion-input name="email" mode="md" formControlName="email">
+        <ion-input name="email" value="test1@gmail.com" mode="md" formControlName="email">
       </ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Password</ion-label>
         <ion-input name="password" type="password" mode="md" formControlName="password"
-        [ngClass]="{'valid': !matchError}">
+                  [ngClass]="{'valid': !matchError}" value="12345">
       </ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Repeat Password</ion-label>
         <ion-input name="password2" type="password" mode="md" formControlName="password2"
-                   [ngClass]="matchError === true ? 'invalid' : 'valid'">
+                   [ngClass]="matchError === true ? 'invalid' : 'valid'" value="12345">
       </ion-input>
     </ion-item>
   </ion-list>

@@ -1,4 +1,4 @@
-<ion-grid>
+<ion-grid *ngIf="posts.length > 0">
   <ion-row>
     <ion-col size="12" size-lg="6" size-md="6" size-sm="6" size-xs="12"
             *ngFor="let post of posts">
