@@ -1,7 +1,7 @@
 <ion-header no-border>
   <ion-toolbar>
     <ion-buttons slot="end">
-      <ion-button (click)="openSettings()"
+      <ion-button (click)="openSettings($event)"
                   color="light">
         <ion-icon slot="icon-only" name="settings"></ion-icon>
       </ion-button>
@@ -10,47 +10,7 @@
 </ion-header>
 
 <ion-content class="padding" text-center>
-  <ion-row>
-    <ion-col size="12" text-center>
-      <img [src]="user.avatar | avatar">
-    </ion-col>
-  </ion-row>
-
-  <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
-    <app-pick-avatar (avatar)="updateForm.controls.avatar.value = $event">
-      </app-pick-avatar>
-    <ion-input type="hidden"
-               name="avatar"
-               [value]="user.avatar"
-               formControlName="avatar">
-    </ion-input>
-    <ion-list>
-      <ion-item>
-        <ion-label position="floating">Email</ion-label>
-        <ion-input name="email"
-                   type="email"
-                   [value]="user.email"
-                   formControlName="email"
-                   mode="md">
-        </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Name</ion-label>
-        <ion-input name="name"
-                  type="text"
-                  [value]="user.name"
-                  formControlName="name"
-                  mode="md">
-        </ion-input>
-      </ion-item>
-    </ion-list>
-    <ion-button type="submit"
-                expand="full"
-                color="primary"
-                shape="round"
-                mode="md"
-                [disabled]="updateForm.invalid">
-            Update
-    </ion-button>
-  </form>
+  <ion-slide>
+    <app-update-form (updated)="user = $event" [user]="user"></app-update-form>
+  </ion-slide>
 </ion-content>

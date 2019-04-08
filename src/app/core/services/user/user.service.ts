@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { StorageService } from '../storage/storage.service';
 import { APP_CONSTANTS } from '@app/app.config';
 import { HttpService } from '../http/http.service';
 import { User, UserResponse} from '@app/shared/interfaces/interfaces';
+import { StorageService } from '@app/core/storage/services/storage.service';
 
 @Injectable()
 
@@ -17,16 +17,16 @@ export class UserService {
   constructor(private http: HttpService,
               private storage: StorageService) {
     console.log('UserService');
-    this.token = this.storage.getToken();
     }
 
   public verifyToken(): Promise<boolean> {
-    if (!this.token) { return Promise.resolve(false); }
+    if (!this.storage.getToken()) { return Promise.resolve(false); }
     return new Promise<boolean>((resolve, rej) => {
       this.http.get(this.API_TOKEN)
         .subscribe((res: UserResponse) => {
           if (res.ok) {
             this.user = res.user;
+            this.storage.setId(res.user._id);
             resolve(true);
           } else { resolve(false); }
       });

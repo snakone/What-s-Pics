@@ -1,23 +1,25 @@
+form {
+  width: 310px;
+  margin: 0 auto;
+  margin-top: -52px;
+}
+
 .sc-ion-input-md-h {
   color: var(--ion-color-pink-tint);
   font-weight: bold;
   letter-spacing: 1px;
 }
 
-form {
-  width: 310px;
-  margin: 0 auto;
-}
-
 ion-list {
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 45px;
 }
 
 img {
-  width: 120px;
+  width: 90px;
   display: block;
   margin: 0 auto;
+  margin-bottom: 25px;
 }
 
 @media (min-width: 800px) {

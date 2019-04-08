@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Avatar, AVATARS } from './avatar.data';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
+import { Avatar, AVATARS, SliderAvatarOpts } from './avatar.data';
+import { IonSlides } from '@ionic/angular';
 
 @Component({
   selector: 'app-pick-avatar',
@@ -9,20 +10,30 @@ import { Avatar, AVATARS } from './avatar.data';
 
 export class PickAvatarComponent implements OnInit {
 
-  @Output() avatar: EventEmitter<string> = new EventEmitter<string>();
+  @ViewChild(IonSlides) slides: IonSlides;
   avatars: Avatar[] = AVATARS;
+  @Output() avatar: EventEmitter<string> = new EventEmitter<string>();
+  @Input() selected = 'av-1.png';
 
-  slidesAvatarOpts = {
-    effect: 'flip',
-    zoom: false,
-    slidesPerView: 3.5,
-    noSwiping: false
-  };
+  slidesAvatarOpts = SliderAvatarOpts;
 
   constructor() { }
 
   ngOnInit() {
+    this.setAvatar();
+  }
 
+  setAvatar() {
+    if (!this.selected) {
+      this.avatars.map(x => x.selected = false);
+    }
+
+    this.avatars.map(x => {
+      if (x.img === this.selected) {
+        x.selected = true;
+        this.slides.slideTo(x.index - 1);
+      } else { x.selected = false; }
+    });
   }
 
   pickAvatar(avatar: Avatar) {

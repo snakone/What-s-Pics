@@ -10,7 +10,7 @@ form {
 }
 
 ion-list {
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 45px;
 }
 
@@ -20,5 +20,11 @@ ion-list {
 
 .valid {
   color: var(--ion-color-success);
+}
+
+@media (min-width: 800px) {
+  form {
+    width: 500px;
+  }
 }
 

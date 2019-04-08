@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { LoginService, StorageService, UserService } from '@app/core/services/services.index';
+import { LoginService, UserService } from '@app/core/services/services.index';
 import { User, UserResponse } from '@app/shared/interfaces/interfaces';
 import { CrafterService } from '@app/shared/crafter/crafter.service';
-import { NavController } from '@ionic/angular';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { StorageService } from '@app/core/storage/services/storage.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,7 +18,7 @@ export class SignInComponent implements OnInit {
   signInForm: FormGroup;
   user: User;
 
-  constructor(private nav: NavController,
+  constructor(private router: Router,
               private login: LoginService,
               private storage: StorageService,
               private craft: CrafterService,
@@ -52,16 +54,19 @@ export class SignInComponent implements OnInit {
   private signIn(e: string, p: string): void {
     this.login.signIn(e, p)
       .subscribe(async (res: UserResponse) => {
-        console.log(res);
         if (res.ok) {
-          this.nav.navigateRoot('/tabs/home');
           await this.storage.setToken(res.token);
-          this.craft.alert('Welcome! ' + res.user.name);
+          this.router.navigateByUrl('/tabs/home');
+          this.craft.alert('login.welcome');
         }
-      }, (err) => {
-          this.craft.alert('Invalid Credentials!');
-          this.storage.removeToken();
-          console.log(err);
+      }, (err: HttpErrorResponse) => {
+          if (err.status === 0) {
+            this.craft.alert('login.error');
+          } else {
+            this.craft.alert('login.invalid');
+            this.storage.clear();
+            console.log(err);
+          }
       });
   }
 

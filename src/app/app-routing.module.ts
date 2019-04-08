@@ -15,6 +15,11 @@ const routes: Routes = [
     canActivate: [LoginGuard]
   },
   {
+    path: 'tutorial',
+    loadChildren: './pages/tutorial/tutorial.module#TutorialPageModule',
+    canActivate: [NavigationGuard]
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'

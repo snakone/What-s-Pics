@@ -1,0 +1,36 @@
+<ion-content text-center>
+  <form #settingsForm="ngForm" (ngSubmit)="onSubmit(settingsForm)">
+    <ion-list>
+      <ion-list-header>
+        <h3>{{'settings.title' | translate}}</h3>
+      </ion-list-header>
+      <ion-item>
+        <ion-label position="stacked">{{'settings.lang' | translate}}</ion-label>
+        <ion-select name="language" [ngModel]="settings.lang">
+          <ion-select-option *ngFor="let l of language"
+                            [value]="l.value"
+                            [selected]="settings.lang == l.value">
+                            {{l.label | translate}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Tutorial</ion-label>
+        <ion-select  name="tutorial" [ngModel]="settings.tutorial">
+          <ion-select-option *ngFor="let t of tutorial"
+                            [value]="t.value"
+                            [selected]="settings.tutorial == t.value">
+                            {{t.label | translate}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-button type="submit"
+                color="primary"
+                shape="round"
+                expand="full"
+                mode="md">
+                {{'settings.button' | translate}}
+    </ion-button>
+  </form>
+</ion-content>

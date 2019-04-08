@@ -12,7 +12,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Password</ion-label>
+      <ion-label position="floating">{{'login.password' | translate}}</ion-label>
       <ion-input name="password"
                  type="password"
                  formControlName="password"
@@ -27,6 +27,6 @@
               shape="round"
               mode="md"
               [disabled]="signInForm.invalid">
-    Login
+              {{'login.button' | translate}}
   </ion-button>
 </form>

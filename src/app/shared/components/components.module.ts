@@ -5,11 +5,13 @@ import { SharedModule } from '../shared.module';
 import { LoaderComponent } from './loader/loader.component';
 import { PickAvatarComponent } from './pick-avatar/pick-avatar.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { SettingsComponent } from './settings/settings/settings.component';
 
 @NgModule({
   declarations: [
     LoaderComponent,
-    PickAvatarComponent
+    PickAvatarComponent,
+    SettingsComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,11 @@ import { PipesModule } from '../pipes/pipes.module';
   ],
   exports: [
     LoaderComponent,
-    PickAvatarComponent
+    PickAvatarComponent,
+    SettingsComponent
+  ],
+  entryComponents: [
+    SettingsComponent
   ]
 })
 

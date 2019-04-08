@@ -1,7 +1,7 @@
 <ion-card>
   <ion-item lines="none" class="section">
     <ion-avatar slot="start">
-      <img src="assets/img/avatars/av-1.png"/>
+      <img [src]="post.user.avatar | avatar"/>
     </ion-avatar>
     <ion-label>
       <h3>{{post.user.name}}</h3>

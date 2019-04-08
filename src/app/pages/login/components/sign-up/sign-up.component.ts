@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User, UserResponse } from '@app/shared/interfaces/interfaces';
-import { LoginService, StorageService } from '@app/core/services/services.index';
+import { LoginService } from '@app/core/services/services.index';
 import { Router } from '@angular/router';
 import { CrafterService } from '@app/shared/crafter/crafter.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { StorageService } from '@app/core/storage/services/storage.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -58,10 +60,15 @@ export class SignUpComponent implements OnInit {
           this.storage.setToken(res.token);
           this.router.navigateByUrl('/tabs/home');
         }
-      }, (err) => {
+      }, (err: HttpErrorResponse) => {
+        if (err.status === 0) {
+          this.craft.alert('Server Error!');
+        } else {
           this.craft.alert('Email must be unique!');
-          this.storage.removeToken();
-      });
+          this.storage.clear();
+          console.log(err);
+        }
+    });
   }
 
   theyMatchError(one: string, two: string) {

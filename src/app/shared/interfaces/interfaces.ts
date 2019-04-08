@@ -1,3 +1,5 @@
+import { STORAGE_CONSTANTS } from '@app/core/storage/storage.config';
+
 export interface PostResponse {
   ok: boolean;
   message: string;
@@ -31,11 +33,17 @@ export interface User {
 
 export class AppStorage {
   id?: string;
-  language?: string;
+  lang?: string;
   posts?: Post[];
   token?: string;
+  tutorial?: boolean;
 
-  constructor(token: string = '') {
+  constructor(token: string = STORAGE_CONSTANTS.TOKEN,
+              lang: string = STORAGE_CONSTANTS.LANGUAGE,
+              tutorial: boolean = STORAGE_CONSTANTS.TUTORIAL
+              ) {
     this.token = token;
+    this.tutorial = tutorial;
+    this.lang = lang;
   }
 }

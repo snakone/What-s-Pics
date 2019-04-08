@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StorageService } from '@app/core/services/services.index';
+import { StorageService } from '@app/core/storage/services/storage.service';
 
 @Component({
   selector: 'app-help',

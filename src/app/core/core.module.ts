@@ -5,10 +5,11 @@ import { IonicStorageModule } from '@ionic/storage';
 import { ErrorHandlerService } from '@core/error-handler/error-handler.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { LanguageModule } from './language/language.module';
-import { CORE_MODULE_CONSTANTS, CORE_MODULE_CONFIG } from './core.module.config';
-import { LanguageService } from './language/services/language.service';
-import { ServicesModule } from './services/services.module';
+import { LanguageModule } from '@core/language/language.module';
+import { CORE_MODULE_CONSTANTS, CORE_MODULE_CONFIG } from '@core/core.module.config';
+import { LanguageService } from '@core/language/services/language.service';
+import { ServicesModule } from '@core/services/services.module';
+import { StorageModule } from '@core/storage/storage.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,
@@ -20,6 +21,7 @@ export function createTranslateLoader(http: HttpClient) {
     CommonModule,
     HttpClientModule,
     ServicesModule,
+    StorageModule,
     IonicStorageModule.forRoot(),
     LanguageModule.forRoot(),
     TranslateModule.forRoot({

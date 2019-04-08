@@ -1,9 +1,11 @@
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-  <app-pick-avatar (avatar)="signUpForm.controls.avatar.value = $event"></app-pick-avatar>
+  <app-pick-avatar (avatar)="signUpForm.controls.avatar.value = $event"
+                    [selected]="'av-1.png'">
+  </app-pick-avatar>
   <ion-input type="hidden" name="avatar" formControlName="avatar"></ion-input>
   <ion-list>
     <ion-item>
-        <ion-label position="floating">Name</ion-label>
+        <ion-label position="floating">{{'login.name' | translate}}</ion-label>
           <ion-input name="name" value="Test" type="text" mode="md" formControlName="name">
         </ion-input>
       </ion-item>
@@ -13,13 +15,13 @@
       </ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Password</ion-label>
+      <ion-label position="floating">{{'login.password' | translate}}</ion-label>
         <ion-input name="password" type="password" mode="md" formControlName="password"
                   [ngClass]="{'valid': !matchError}" value="12345">
       </ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Repeat Password</ion-label>
+      <ion-label position="floating">{{'login.repeat.password' | translate}}</ion-label>
         <ion-input name="password2" type="password" mode="md" formControlName="password2"
                    [ngClass]="matchError === true ? 'invalid' : 'valid'" value="12345">
       </ion-input>
@@ -31,6 +33,6 @@
               shape="round"
               [disabled]="signUpForm.invalid"
               mode="md">
-    Create
+              {{'login.create' | translate}}
   </ion-button>
 </form>

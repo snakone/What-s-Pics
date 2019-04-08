@@ -1,5 +1,5 @@
-<h3>Select an Avatar</h3>
-<ion-slides [options]="slidesAvatarOpts">
+<h3>{{'select.avatar' | translate}}</h3>
+<ion-slides #slides [options]="slidesAvatarOpts">
     <ion-slide *ngFor="let avatar of avatars">
         <img class="pick-avatar"
                 [src]="avatar.img | avatar"

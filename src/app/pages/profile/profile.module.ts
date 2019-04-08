@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { ProfilePage } from './profile.page';
 import { ComponentsModule } from '@app/shared/components/components.module';
 import { SharedModule } from '@app/shared/shared.module';
+import { UpdateFormComponent } from './components/update-form/update-form.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,10 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ProfilePage]
+  declarations: [
+    ProfilePage,
+    UpdateFormComponent
+  ]
 })
 
 export class ProfilePageModule {}

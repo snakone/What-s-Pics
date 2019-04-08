@@ -6,8 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { APP_CONSTANTS } from '@app/app.config';
 
 import { timer } from 'rxjs';
-import { StorageService, UserService } from './core/services/services.index';
-import { Storage } from '@ionic/storage';
+import { StorageService } from './core/storage/services/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +23,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private storage: StorageService
   ) {
     this.initializeApp();
   }
@@ -38,6 +38,7 @@ export class AppComponent {
       });
     });
     this.translate.setDefaultLang(APP_CONSTANTS.DEFAULT_LANGUAGE);
+    this.storage.getLanguage() ? this.translate.use(this.storage.getLanguage()) :
     this.translate.use(APP_CONSTANTS.DEFAULT_LANGUAGE);
   }
 
