@@ -1,0 +1,47 @@
+.sc-ion-textarea-md-h {
+  color: var(--ion-color-pink-tint);
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding-bottom: 8px;
+}
+
+form {
+  width: 310px;
+  margin: 0 auto;
+  margin-top: -62px;
+}
+
+ion-icon {
+  padding-right: 10px;
+  margin-top: -1px;
+}
+
+.submit {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.new-post {
+  margin-top: -16px;
+  margin-bottom: 20px;
+}
+
+ion-list {
+  margin-bottom: 10px;
+}
+
+@media (min-width: 800px) {
+  form {
+    width: 500px;
+  }
+
+  ion-list {
+    margin-bottom: 20px;
+  }
+}
+
+.image-box {
+ position: relative;
+ top: 45px;
+}

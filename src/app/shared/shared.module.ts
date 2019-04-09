@@ -4,7 +4,6 @@ import { PipesModule } from '@shared/pipes/pipes.module';
 import { NativeModule } from '@shared/native/native.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageModule } from '@app/core/language/language.module';
-import { CrafterService } from './crafter/crafter.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -26,9 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [
-    CrafterService
-  ]
+  providers: []
 })
 
 export class SharedModule { }

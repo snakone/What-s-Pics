@@ -3,8 +3,9 @@ import { STORAGE_CONSTANTS } from '@app/core/storage/storage.config';
 export interface PostResponse {
   ok: boolean;
   message: string;
-  page: number;
-  posts: Post[];
+  page?: number;
+  posts?: Post[];
+  post?: Post;
 }
 
 export interface UserResponse {

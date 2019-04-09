@@ -19,9 +19,10 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.getPosts();
+    this.getStream();
   }
 
-  getPosts(event?: any) {
+  getPosts(event?: any): void {
     if (!event) { this.loading = true; }
       this.postService.getPosts()
       .subscribe(async (res: PostResponse) => {
@@ -32,7 +33,7 @@ export class HomePage implements OnInit {
     });
   }
 
-  doRefresh(event: any) {
+  doRefresh(event: any): void {
     this.posts = [];
     this.postService.page = 0;
     this.getPosts(event);
@@ -45,6 +46,13 @@ export class HomePage implements OnInit {
 
   onScroll(event: any): void {
     this.getPosts(event);
+  }
+
+  private getStream() {
+    this.postService.stream
+      .subscribe((res: Post) => {
+        this.posts.unshift(res);
+      });
   }
 
   private handleEvent(data: Post[], event?: any): void {

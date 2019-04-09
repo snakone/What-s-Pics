@@ -12,6 +12,7 @@ export class LanguageService {
     @Inject(APP_CONFIG) private appConfig: AppConfig) {
     this.setDefault();
     this.loadStorageLanguage();
+    console.log('LanguageService');
   }
 
   private setDefault() {

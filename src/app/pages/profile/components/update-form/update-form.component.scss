@@ -2,6 +2,9 @@ form {
   width: 310px;
   margin: 0 auto;
   margin-top: -52px;
+  overflow: auto;
+  padding-top: 52px;
+  padding-bottom: 52px;
 }
 
 .sc-ion-input-md-h {
@@ -12,11 +15,11 @@ form {
 
 ion-list {
   margin-top: 20px;
-  margin-bottom: 45px;
+  margin-bottom: 35px;
 }
 
 img {
-  width: 90px;
+  width: 75px;
   display: block;
   margin: 0 auto;
   margin-bottom: 25px;

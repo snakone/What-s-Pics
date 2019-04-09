@@ -10,6 +10,8 @@ import { CORE_MODULE_CONSTANTS, CORE_MODULE_CONFIG } from '@core/core.module.con
 import { LanguageService } from '@core/language/services/language.service';
 import { ServicesModule } from '@core/services/services.module';
 import { StorageModule } from '@core/storage/storage.module';
+import { environment } from '@env/environment';
+import { AgmCoreModule } from '@agm/core';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,
@@ -30,6 +32,9 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: createTranslateLoader,
         deps: [HttpClient]
       }
+    }),
+    AgmCoreModule.forRoot({
+      apiKey: environment.mapKey
     }),
   ],
   declarations: [],

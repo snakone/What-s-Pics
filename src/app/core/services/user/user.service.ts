@@ -3,6 +3,7 @@ import { APP_CONSTANTS } from '@app/app.config';
 import { HttpService } from '../http/http.service';
 import { User, UserResponse} from '@app/shared/interfaces/interfaces';
 import { StorageService } from '@app/core/storage/services/storage.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 
@@ -28,8 +29,11 @@ export class UserService {
             this.user = res.user;
             this.storage.setId(res.user._id);
             resolve(true);
-          } else { resolve(false); }
-      });
+          }
+        }, (err => {
+            resolve(false);
+            console.log(err);
+      }));
     });
   }
 
@@ -38,7 +42,7 @@ export class UserService {
     return { ...this.user };
   }
 
-  updateUser(user: User) {
+  updateUser(user: User): Observable<UserResponse> {
     return this.http.put(this.API_USERS, user);
   }
 

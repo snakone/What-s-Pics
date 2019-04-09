@@ -5,7 +5,9 @@ import {HttpErrorResponse} from '@angular/common/http';
 
 export class ErrorHandlerService implements ErrorHandler {
 
-  constructor() { }
+  constructor() {
+    console.log('ErrorService');
+  }
 
   handleError(error: any): void {
     switch (error.constructor) {
