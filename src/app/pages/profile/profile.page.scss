@@ -3,9 +3,17 @@
 }
 
 ion-slide {
-  height: 100%;
+  height: auto;
+  min-height: calc(100% - 52px);
 }
 
 ion-content {
   height: 100%;
+}
+
+@media (max-height: 400px) {
+  ion-slide {
+    margin-bottom: 40px;
+    margin-top: 0;
+  }
 }

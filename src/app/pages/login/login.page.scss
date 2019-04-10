@@ -9,3 +9,19 @@ ion-segment-button {
 .segment-button-checked ion-button {
   color: var(--ion-color-warning) !important;
 }
+
+@media (max-height: 412px) {
+  ion-slides {
+    height: auto;
+    margin-top: 0;
+  }
+
+  .sign-in {
+    margin-top: 78px;
+  }
+
+  .sign-up {
+    padding-top: 25px;
+    padding-bottom: 5px;
+  }
+}

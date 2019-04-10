@@ -1,9 +1,25 @@
 ion-slide {
-  height: 100%;
+  height: auto;
+  min-height: calc(100% - 25px);
+}
+
+.padding {
+  padding-top: 0px !important;
 }
 
 ion-icon {
-  font-size: 26px;
+  font-size: 25px;
+}
+
+ion-content {
+  height: 100%;
+}
+
+@media (max-height: 400px) {
+  ion-slide {
+    margin-bottom: 30px;
+    margin-top: 0;
+  }
 }
 
 

@@ -1,10 +1,7 @@
 form {
   width: 310px;
   margin: 0 auto;
-  margin-top: -52px;
-  overflow: auto;
-  padding-top: 52px;
-  padding-bottom: 52px;
+  min-height: 100%;
 }
 
 .sc-ion-input-md-h {
@@ -25,7 +22,7 @@ img {
   margin-bottom: 25px;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 812px) {
   form {
     width: 500px;
   }

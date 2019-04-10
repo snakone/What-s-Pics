@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HttpService,
          PostService,
          LoginService,
-         UserService } from './services.index';
+         UserService,
+         CameraService } from './services.index';
 
 @NgModule({
   declarations: [],
@@ -14,7 +15,8 @@ import { HttpService,
     HttpService,
     PostService,
     LoginService,
-    UserService
+    UserService,
+    CameraService
   ]
 })
 
