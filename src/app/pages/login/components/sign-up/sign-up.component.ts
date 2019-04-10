@@ -18,6 +18,7 @@ export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   namePattern = '^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$';
   matchError = false;
+  avatar: string;
 
   constructor(private login: LoginService,
               private storage: StorageService,
@@ -38,7 +39,6 @@ export class SignUpComponent implements OnInit {
                                    Validators.email,
                                    Validators.minLength(5),
                                    Validators.maxLength(35)]),
-     avatar: new FormControl('av-1png', []),
   password: new FormControl(null, [Validators.required,
                                    Validators.minLength(5),
                                    Validators.maxLength(25)]),
@@ -49,6 +49,7 @@ export class SignUpComponent implements OnInit {
   onSubmit() {
     if (this.signUpForm.invalid) { return false; }
     const user: User = this.signUpForm.value;
+    user.avatar = this.avatar;
     this.signUp(user);
   }
 
@@ -56,15 +57,15 @@ export class SignUpComponent implements OnInit {
     this.login.signUp(user)
       .subscribe(async (res: UserResponse) => {
         if (res.ok) {
-          await this.craft.alert('Welcome! ' + res.user.name);
+          await this.craft.alert('login.welcome');
           this.storage.setToken(res.token);
           this.router.navigateByUrl('/tabs/home');
         }
       }, (err: HttpErrorResponse) => {
         if (err.status === 0) {
-          this.craft.alert('Server Error!');
+          this.craft.alert('login.error');
         } else {
-          this.craft.alert('Email must be unique!');
+          this.craft.alert('email.unique');
           this.storage.clear();
           console.log(err);
         }

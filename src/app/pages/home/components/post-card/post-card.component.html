@@ -8,14 +8,15 @@
       <h5>{{post.user.email}}</h5>
     </ion-label>
   </ion-item>
-  <ion-slides #slides pager="true" [options]="slideOpts">
+  <!-- <ion-slides #slides pager="true" [options]="slideOpts">
     <ion-slide [style]="img1 | sanitizer">
   </ion-slide>
   <ion-slide [style]="img2 | sanitizer">
     </ion-slide>
   <ion-slide [style]="img3 | sanitizer">
   </ion-slide>
-  </ion-slides>
+  </ion-slides> -->
+  <app-map *ngIf="post.coords" [coords]="post.coords"></app-map>
   <ion-item lines="none" class="content">
     <ion-label class="content-label" text-wrap>
       {{post.message}}

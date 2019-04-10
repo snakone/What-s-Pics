@@ -1,0 +1,57 @@
+<form [formGroup]="postForm">
+  <h3 class="new-post">{{'new.post' | translate}}</h3>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">{{'post.message' | translate}}</ion-label>
+      <ion-textarea name="message" mode="md" formControlName="message"
+                    [placeholder]="'message.here' | translate"></ion-textarea>
+    </ion-item>
+    <ion-item class="coords">
+      <ion-label>{{'post.spot' | translate}}</ion-label>
+      <ion-spinner *ngIf="spinner" name="lines-small"></ion-spinner>
+      <ion-toggle color="light"
+                  formControlName="coords"
+                  (ionChange)="toogleCoords($event)"
+                  slot="end">
+      </ion-toggle>
+    </ion-item>
+  </ion-list>
+  <ion-row>
+    <ion-col size="6">
+      <ion-button expand="block"
+                  shape="round"
+                  mode="md"
+                  (click)="openCamera()">
+        <ion-icon slot="start" name="camera"></ion-icon>
+        {{'camera.button' | translate}}
+      </ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button expand="block"
+                  shape="round"
+                  mode="md">
+        <ion-icon slot="start" name="images"></ion-icon>
+        {{'gallery.button' | translate}}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <div class="image-box">
+      <ion-list *ngIf="temp.length > 0">
+        <ion-item *ngFor="let i of temp">
+            <ion-thumbnail slot="end">
+              <img [src]="i.image | sanitizer:'URL'">
+            </ion-thumbnail>
+            <ion-label class="image-title" text-left>
+              {{i.name}}
+              <p>{{i.size | number}} Kbs</p>
+            </ion-label>
+        </ion-item>
+      </ion-list>
+
+    <ion-row *ngIf="temp.length === 0">
+      <ion-col size="12">
+        <h3>0 {{'images.selected' | translate}}</h3>
+      </ion-col>
+    </ion-row>
+  </div>
+</form>

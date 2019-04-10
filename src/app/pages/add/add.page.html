@@ -1,9 +1,16 @@
-<ion-header>
+<ion-header no-border>
   <ion-toolbar>
-    <ion-title>add</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="createPost()"
+                  color="light"
+                  [disabled]="loading">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-
+<ion-content class="padding" padding>
+  <ion-slide>
+    <app-post-form (loading)="loading = $event" [submit]="submit"></app-post-form>
+  </ion-slide>
 </ion-content>

@@ -20,9 +20,8 @@ export class PostCardComponent implements OnInit {
   @Input() post: Post;
   @ViewChild(IonSlides) slides: IonSlides;
 
-  @HostListener('window:resize')
-    onResize() {
-    setTimeout(() => this.slides.update(), 100);
+  @HostListener('window:resize') onResize() {
+    if (this.slides) { setTimeout(() => this.slides.update(), 100); }
   }
 
   constructor() { }

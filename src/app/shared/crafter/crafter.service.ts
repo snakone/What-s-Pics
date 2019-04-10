@@ -3,7 +3,9 @@ import { AlertController, ToastController, PopoverController } from '@ionic/angu
 import { SettingsComponent } from '../components/settings/settings/settings.component';
 import { TranslateService } from '@ngx-translate/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 
 export class CrafterService {
 

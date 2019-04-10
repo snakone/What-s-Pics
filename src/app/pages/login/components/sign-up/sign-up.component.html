@@ -1,8 +1,7 @@
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-  <app-pick-avatar (avatar)="signUpForm.controls.avatar.value = $event"
+  <app-pick-avatar (avatar)="avatar = $event"
                     [selected]="'av-1.png'">
   </app-pick-avatar>
-  <ion-input type="hidden" name="avatar" formControlName="avatar"></ion-input>
   <ion-list>
     <ion-item>
         <ion-label position="floating">{{'login.name' | translate}}</ion-label>

@@ -15,11 +15,11 @@ export const SliderAvatarOpts = {
   noSwiping: false,
   breakpoints: {
     800: {
-      slidesPerView: 3.5,
+      slidesPerView: 3.8,
       spaceBetween: 10
     },
     1920: {
-      slidesPerView: 5.5,
+      slidesPerView: 5.8,
       spaceBetween: 10
     }
   }
