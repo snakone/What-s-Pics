@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StorageService } from './services/storage.service';
+import { StorageService } from './storage.service';
 import { STORAGE_CONFIG, STORAGE_CONSTANTS } from './storage.config';
 
 @NgModule({

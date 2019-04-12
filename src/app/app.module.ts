@@ -13,8 +13,7 @@ import { CoreModule } from '@core/core.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ComponentsModule } from '@shared/components/components.module';
-import { StorageService } from '@core/storage/services/storage.service';
-import { AgmCoreModule } from '@agm/core';
+import { StorageService } from '@core/storage/storage.service';
 
 export function Factory(provider: StorageService) {
   return () => provider.load();

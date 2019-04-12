@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 
 import { AgmMap } from '@agm/core';
+import { ModalController } from '@ionic/angular';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-map',
@@ -10,23 +12,25 @@ import { AgmMap } from '@agm/core';
 
 export class MapComponent implements OnInit {
 
-  @Input() coords: string;
-  lat: number;
-  lng: number;
+  show = false;
+  @Input() lat: number;
+  @Input() lng: number;
 
   @ViewChild(AgmMap) public agmMap: AgmMap;
 
-  constructor() { }
+  constructor(private modal: ModalController) { }
 
   ngOnInit() {
-    this.loadMapBox(this.coords);
   }
 
-  private loadMapBox(c: string) {
-    if (!this.agmMap) { return; }
-    this.agmMap.triggerResize();
-    this.lat = Number(c.split(',')[0]);
-    this.lng = Number(c.split(',')[1]);
+  ionViewDidEnter() {
+    timer(1000).subscribe(() => {
+      this.show = true;
+    });
+  }
+
+  closeModal() {
+    this.modal.dismiss();
   }
 
 }

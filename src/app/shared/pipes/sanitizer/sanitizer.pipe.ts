@@ -13,7 +13,7 @@ export class SanitizerPipe implements PipeTransform {
     if (args === 'URL') {
       return this.sanitizer.bypassSecurityTrustUrl(value);
     }
-    const style = `background-image: url('assets/img/${value}')`;
+    const style = `background-image: url('${value}')`;
     return this.sanitizer.bypassSecurityTrustStyle(style);
   }
 

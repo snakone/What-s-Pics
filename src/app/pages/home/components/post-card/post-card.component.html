@@ -3,20 +3,20 @@
     <ion-avatar slot="start">
       <img [src]="post.user.avatar | avatar"/>
     </ion-avatar>
-    <ion-label>
+      <ion-label>
       <h3>{{post.user.name}}</h3>
       <h5>{{post.user.email}}</h5>
     </ion-label>
   </ion-item>
-  <!-- <ion-slides #slides pager="true" [options]="slideOpts">
-    <ion-slide [style]="img1 | sanitizer">
-  </ion-slide>
-  <ion-slide [style]="img2 | sanitizer">
+
+  <ion-slides #slides *ngIf="post.img.length > 0"
+              pager="true"
+              [options]="slideOpts">
+    <ion-slide *ngFor="let img of post.img"
+               [style]="(img | images: post.user._id) | sanitizer">
     </ion-slide>
-  <ion-slide [style]="img3 | sanitizer">
-  </ion-slide>
-  </ion-slides> -->
-  <app-map *ngIf="post.coords" [coords]="post.coords"></app-map>
+  </ion-slides>
+
   <ion-item lines="none" class="content">
     <ion-label class="content-label" text-wrap>
       {{post.message}}
@@ -24,7 +24,16 @@
   </ion-item>
   <ion-item lines="none" class="section">
     <ion-label>{{post.created}}</ion-label>
-    <ion-icon slot="end" color="light" name="heart-empty"></ion-icon>
-    <ion-icon slot="end" color="light" name="bookmark"></ion-icon>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="post.coords" (click)="checkCoords()">
+        <ion-icon color="light" name="pin"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon color="light" name="heart-empty"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon color="light" name="bookmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-item>
 </ion-card>

@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { PopoverController, ToastController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
 import { AppStorage } from '@app/shared/interfaces/interfaces';
-import { StorageService } from '@app/core/storage/services/storage.service';
+import { StorageService } from '@app/core/storage/storage.service';
 import { LanguageOpts, SettingsOpts, TutorialOpts } from './settings.data';
 import { TranslateService } from '@ngx-translate/core';
 

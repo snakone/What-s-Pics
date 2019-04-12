@@ -30,7 +30,8 @@ import { AgmCoreModule } from '@agm/core';
     MapComponent
   ],
   entryComponents: [
-    SettingsComponent
+    SettingsComponent,
+    MapComponent
   ]
 })
 

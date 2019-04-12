@@ -4,7 +4,8 @@ import { HttpService,
          PostService,
          LoginService,
          UserService,
-         CameraService } from './services.index';
+         CameraService,
+         UploadService} from './services.index';
 
 @NgModule({
   declarations: [],
@@ -16,7 +17,8 @@ import { HttpService,
     PostService,
     LoginService,
     UserService,
-    CameraService
+    CameraService,
+    UploadService
   ]
 })
 

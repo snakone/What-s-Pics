@@ -15,9 +15,15 @@ export interface UserResponse {
   token?: string;
 }
 
+export interface FileResponse {
+  name: string;
+  image: string;
+  size: number;
+}
+
 export interface Post {
   _id: string;
-  img?: string[];
+  image?: string[];
   message: string;
   coords: string;
   user: User;

@@ -4,8 +4,8 @@ import { LoginService, UserService } from '@app/core/services/services.index';
 import { User, UserResponse } from '@app/shared/interfaces/interfaces';
 import { CrafterService } from '@app/shared/crafter/crafter.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { StorageService } from '@app/core/storage/services/storage.service';
+import { StorageService } from '@app/core/storage/storage.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sign-in',
@@ -18,7 +18,7 @@ export class SignInComponent implements OnInit {
   signInForm: FormGroup;
   user: User;
 
-  constructor(private router: Router,
+  constructor(private nav: NavController,
               private login: LoginService,
               private storage: StorageService,
               private craft: CrafterService,
@@ -55,9 +55,9 @@ export class SignInComponent implements OnInit {
     this.login.signIn(e, p)
       .subscribe(async (res: UserResponse) => {
         if (res.ok) {
+          this.userService.setUser(res.user);
           await this.storage.setToken(res.token);
-          this.router.navigateByUrl('/tabs/home');
-          this.craft.alert('login.welcome');
+          this.checkTutorial();
         }
       }, (err: HttpErrorResponse) => {
           if (err.status === 0) {
@@ -69,5 +69,12 @@ export class SignInComponent implements OnInit {
           }
       });
   }
+
+  private checkTutorial(): void {
+    this.storage.getTutorial() ?
+    this.nav.navigateRoot('/tutorial') :
+    this.nav.navigateRoot('/tabs/home');
+  }
+
 
 }

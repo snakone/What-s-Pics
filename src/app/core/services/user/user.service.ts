@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { APP_CONSTANTS } from '@app/app.config';
 import { HttpService } from '../http/http.service';
 import { User, UserResponse} from '@app/shared/interfaces/interfaces';
-import { StorageService } from '@app/core/storage/services/storage.service';
+import { StorageService } from '@app/core/storage/storage.service';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -40,6 +40,14 @@ export class UserService {
   getUser(): User {
     if (!this.user) { this.verifyToken(); }
     return { ...this.user };
+  }
+
+  setUser(user: User): void {
+    this.user = user;
+  }
+
+  logout() {
+    this.user = null;
   }
 
   updateUser(user: User): Observable<UserResponse> {
