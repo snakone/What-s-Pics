@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User, UserResponse } from '@app/shared/interfaces/interfaces';
 import { LoginService } from '@app/core/services/services.index';
-import { Router } from '@angular/router';
 import { CrafterService } from '@app/shared/crafter/crafter.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { StorageService } from '@app/core/storage/services/storage.service';
+import { StorageService } from '@app/core/storage/storage.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sign-up',
@@ -22,7 +22,7 @@ export class SignUpComponent implements OnInit {
 
   constructor(private login: LoginService,
               private storage: StorageService,
-              private router: Router,
+              private nav: NavController,
               private craft: CrafterService) { }
 
   ngOnInit() {
@@ -57,9 +57,8 @@ export class SignUpComponent implements OnInit {
     this.login.signUp(user)
       .subscribe(async (res: UserResponse) => {
         if (res.ok) {
-          await this.craft.alert('login.welcome');
-          this.storage.setToken(res.token);
-          this.router.navigateByUrl('/tabs/home');
+          await this.storage.setToken(res.token);
+          this.nav.navigateRoot('/tutorial');
         }
       }, (err: HttpErrorResponse) => {
         if (err.status === 0) {

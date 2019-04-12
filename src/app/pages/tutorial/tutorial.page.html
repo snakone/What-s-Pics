@@ -1,9 +1,51 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>tutorial</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-toolbar class="toolbar">
+  <ion-button *ngIf="index != slides.length"
+            class="animated fadeIn"
+            color="primary"
+            slot="end"
+            (click)="goToSkip()">
+            {{'slide.skip' | translate}}
+  </ion-button>
+  <ion-button *ngIf="index == slides.length"
+            class="animated fadeIn"
+            color="primary"
+            slot="end"
+            (click)="goToStart()">
+            {{'slide.back' | translate}}
+  </ion-button>
+</ion-toolbar>
 
 <ion-content>
+  <ion-slides #slider
+              pager="true"
+              (ionSlideDidChange)="getIndex()"
+              [options]="sliderOptions">
 
+      <ion-slide *ngFor="let slide of slides">
+        <div class="slide">
+          <img [src]="slide.image"/>
+          <h2>{{slide.title | translate}}</h2>
+          <p [innerHTML]="slide.description | translate"></p>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="slide">
+          <img src="assets/img/slides/slide5.png"/>
+          <h2>{{'fifth.slide.title' | translate}}</h2>
+          <ion-button color="primary"
+                      class="continue"
+                      (click)="goHome()">
+                      {{'slide.continue' | translate}}
+          </ion-button>
+          <p class="not-show">
+            {{'slide.skip.tutorial' | translate}}
+            <ion-checkbox [(ngModel)]="checkbox"
+                          class="checkbox"
+                          color="light"
+                          checked="true">
+            </ion-checkbox>
+          </p>
+        </div>
+      </ion-slide>
+  </ion-slides>
 </ion-content>

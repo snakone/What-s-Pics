@@ -27,6 +27,8 @@
   "post.spot": "Geolocalización",
   "camera.button": "Cámara",
   "camera.error": "Error en la Cámara",
+  "picker.error": "Error cargando Imagenes!",
+  "max.file.error": "Máximo 3Mbs!",
   "gallery.button": "Galería",
   "images.selected": "Imagenes seleccionadas",
   "email.unique": "El Email debe ser único!",
@@ -36,5 +38,18 @@
   "tab.home": "Home",
   "tab.add": "Añadir",
   "tab.profile": "Perfil",
-  "tab.help": "Ayuda"
+  "tab.help": "Ayuda",
+  "fifth.slide.title": "¿Listo para empezar?",
+  "slide.continue": "Continuar",
+  "slide.skip.tutorial": "No mostrar de nuevo",
+  "slide.back": "Volver",
+  "slide.skip": "Saltar",
+  "first.slide.title": "What's Pics",
+  "first.slide.description": "¡Con esta aplicación podrás compartir tus momentos y fotos favoritas!",
+  "second.slide.title": "Inmortaliza el momento!",
+  "second.slide.description": "¡Toma una foto o sube una existente, escribe un mensaje y listo! ¡A compartir!",
+  "third.slide.title": "Comparte y disfruta",
+  "third.slide.description": "Lo que compartas es visible para todos. ¡Aprovecha y sube algo intersante!",
+  "fourth.slide.title": "¡Deja tu huella!",
+  "fourth.slide.description": "Si te gusta alguna foto que hayas visto, ¿A qué esperas? ¡Demuéstralo!"
 }

@@ -29,4 +29,8 @@ export class PostService {
     this.stream.next(post);
   }
 
+  resetPage(): void {
+    this.page = 0;
+  }
+
 }

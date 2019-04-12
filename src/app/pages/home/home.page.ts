@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '@app/core/services/post/post.service';
 import { PostResponse, Post } from '@app/shared/interfaces/interfaces';
+import { UserService } from '@core/services/user/user.service';
 
 @Component({
   selector: 'app-home',
@@ -20,12 +21,13 @@ export class HomePage implements OnInit {
   ngOnInit(): void {
     this.getPosts();
     this.getStream();
+
   }
 
   getPosts(event?: any): void {
     if (!event) { this.loading = true; }
       this.postService.getPosts()
-      .subscribe(async (res: PostResponse) => {
+      .subscribe((res: PostResponse) => {
         if (res.ok) {
           this.posts.push(...res.posts);
           this.handleEvent(res.posts, event);
@@ -35,13 +37,13 @@ export class HomePage implements OnInit {
 
   doRefresh(event: any): void {
     this.posts = [];
-    this.postService.page = 0;
+    this.postService.resetPage();
     this.getPosts(event);
-    this.scroll = true;
     this.refresh = false;
     setTimeout(() => {
       this.refresh = true;
-    }, 3000);
+      this.scroll = true;
+    }, 1000);
   }
 
   onScroll(event: any): void {

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 
 @NgModule({
   declarations: [],
@@ -13,7 +14,9 @@ import { File } from '@ionic-native/file/ngx';
   providers: [
     Geolocation,
     Camera,
-    File
+    File,
+// tslint:disable-next-line: deprecation
+    FileTransfer
   ]
 })
 

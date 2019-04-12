@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, ViewChild, HostListener } from '@angular/core';
 import { Post } from '@shared/interfaces/interfaces';
-import { IonSlides } from '@ionic/angular';
+import { IonSlides, ModalController } from '@ionic/angular';
 import { SLIDES_OPTS } from './slides.config';
+import { MapComponent } from '../../../../shared/components/map/map.component';
 
 @Component({
   selector: 'app-post-card',
@@ -13,10 +14,6 @@ export class PostCardComponent implements OnInit {
 
   slideOpts = SLIDES_OPTS;
 
-  img1 = 'perro-1.jpg';
-  img2 = 'perro-2.jpg';
-  img3 = 'perro-3.jpg';
-
   @Input() post: Post;
   @ViewChild(IonSlides) slides: IonSlides;
 
@@ -24,9 +21,22 @@ export class PostCardComponent implements OnInit {
     if (this.slides) { setTimeout(() => this.slides.update(), 100); }
   }
 
-  constructor() { }
+  constructor(private modalController: ModalController) { }
 
   ngOnInit() {
+  }
+
+  async checkCoords() {
+    const lat = Number(this.post.coords.split(',')[0]);
+    const lng = Number(this.post.coords.split(',')[1]);
+    const modal = await this.modalController.create({
+      component: MapComponent,
+      componentProps: {
+        'lat': lat,
+        'lng': lng
+      }
+    });
+    return await modal.present();
   }
 
 }

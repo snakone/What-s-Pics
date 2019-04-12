@@ -91,6 +91,7 @@
         <variable name="CAMERA_USAGE_DESCRIPTION" value="What's Pics needs access to the camera" />
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="What's Pics need access to your files" />
     </plugin>
+    <plugin name="cordova-plugin-file-transfer" spec="1.7.1" />
     <engine name="ios" spec="4.5.5" />
     <engine name="android" spec="7.1.4" />
 </widget>

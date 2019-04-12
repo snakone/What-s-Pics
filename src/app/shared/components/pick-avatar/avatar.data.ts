@@ -7,6 +7,7 @@ export const AVATARS: Avatar[] = [
   { img: 'av-6.png', selected: false, index: 6},
   { img: 'av-7.png', selected: false, index: 7},
   { img: 'av-8.png', selected: false, index: 8},
+  { img: 'av-9.png', selected: false, index: 9},
 ];
 
 export const SliderAvatarOpts = {

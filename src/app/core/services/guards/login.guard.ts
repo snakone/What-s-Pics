@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NavController } from '@ionic/angular';
-import { StorageService } from '@app/core/storage/services/storage.service';
+import { StorageService } from '@app/core/storage/storage.service';
 
 @Injectable({
   providedIn: 'root'

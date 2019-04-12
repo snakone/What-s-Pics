@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User, UserResponse } from '@app/shared/interfaces/interfaces';
 import { UserService } from '@app/core/services/user/user.service';
 import { CrafterService } from '@app/shared/crafter/crafter.service';
-import { StorageService } from '@app/core/storage/services/storage.service';
+import { StorageService } from '@app/core/storage/storage.service';
 
 @Component({
   selector: 'app-update-form',

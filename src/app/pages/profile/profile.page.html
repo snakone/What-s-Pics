@@ -11,6 +11,8 @@
 
 <ion-content class="padding" text-center>
   <ion-slide>
-    <app-update-form (updated)="user = $event" [user]="user"></app-update-form>
+    <app-update-form (updated)="user = $event"
+                     [user]="user">
+    </app-update-form>
   </ion-slide>
 </ion-content>

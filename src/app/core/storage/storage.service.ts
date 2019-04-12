@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { AppStorage } from '@app/shared/interfaces/interfaces';
-import { STORAGE_CONSTANTS } from '../storage.config';
+import { STORAGE_CONSTANTS } from './storage.config';
 
 @Injectable()
 
@@ -23,26 +23,9 @@ export class StorageService {
     await this.storage.set(STORAGE_CONSTANTS.KEY, this.data);
   }
 
-  public setId(id: string): void {
-    this.data.id = id;
-  }
-
-  public getId(): string {
-    return this.data.id;
-  }
-
+  // GET
   public get(): AppStorage {
     return this.data;
-  }
-
-  public async clear(): Promise<void> {
-    this.data.token = '';
-    this.save();
-  }
-
-  public async reset(): Promise<void> {
-    this.data = new AppStorage();
-    await this.storage.clear();
   }
 
   public getToken(): string {
@@ -53,13 +36,37 @@ export class StorageService {
     return this.data.lang;
   }
 
+  public getTutorial(): boolean {
+    return this.data.tutorial;
+  }
+
+  public getId(): string {
+    return this.data.id;
+  }
+
+  // SET
+  public setId(id: string): void {
+    this.data.id = id;
+  }
+
   public setToken(token: string): void {
     if (!token) { return; }
     this.data.token = token;
     this.save(STORAGE_CONSTANTS.TOKEN, token);
   }
 
-  public removeToken(): void {
+  // CLEAR
+  public async clear(): Promise<void> {
+    this.data.token = '';
+    this.save();
+  }
+
+  public async reset(): Promise<void> {
+    this.data = new AppStorage();
+    await this.storage.clear();
+  }
+
+    public removeToken(): void {
     this.data.token = '';
     this.save(STORAGE_CONSTANTS.TOKEN, '');
   }

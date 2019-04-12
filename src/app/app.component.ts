@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { APP_CONSTANTS } from '@app/app.config';
 
 import { timer } from 'rxjs';
-import { StorageService } from './core/storage/services/storage.service';
+import { StorageService } from './core/storage/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +17,7 @@ import { StorageService } from './core/storage/services/storage.service';
 export class AppComponent {
 
   show = true;
-  version = '0.0.1-public';
+  version = APP_CONSTANTS.APP_VERSION;
 
   constructor(
     private platform: Platform,

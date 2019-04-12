@@ -28,6 +28,8 @@
   "post.spot": "Get Geolocation",
   "camera.button": "Camera",
   "camera.error": "Camera Error",
+  "picker.error": "Error loading Images!",
+  "max.file.error": "Max 3Mbs!",
   "gallery.button": "Galery",
   "images.selected": "Images selected",
   "email.unique": "Email must be unique!",
@@ -36,5 +38,18 @@
   "tab.home": "Home",
   "tab.add": "Add",
   "tab.profile": "Profile",
-  "tab.help": "Help"
+  "tab.help": "Help",
+  "fifth.slide.title": "¿Ready to start?",
+  "slide.continue": "CONTINUE",
+  "slide.skip.tutorial": "Do not show again",
+  "slide.back": "Back",
+  "slide.skip": "Skip",
+  "first.slide.title": "What's Pics",
+  "first.slide.description": "Share your best <b>moments</b> and <b>pictures</b> with the world with this <b>Application</b>.",
+  "second.slide.title": "Take a Picture!",
+  "second.slide.description": "Take a picture or upload one of yours, write a message. You are ready!",
+  "third.slide.title": "Share and enjoy",
+  "third.slide.description": "Your shares are visible for everyone. Upload something interesting!",
+  "fourth.slide.title": "Leave your trace!",
+  "fourth.slide.description": "Have You seeing something You like? Don't miss the change and show it!"
 }

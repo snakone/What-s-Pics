@@ -13,14 +13,14 @@ export class ProfilePage implements OnInit {
 
   user: User;
 
-  constructor(private userService: UserService,
+  constructor(public userService: UserService,
               private craft: CrafterService) { }
 
   ngOnInit() {
     this.getUser();
   }
 
-  private getUser(): void {
+  getUser(): void {
     this.user = this.userService.getUser();
   }
 

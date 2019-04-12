@@ -1,3 +1,13 @@
-<agm-map #AgmMap [latitude]="lat" [longitude]="lng" [zoom]="14">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
+<ion-content *ngIf="show">
+  <ion-back-button defaultHref="tabs/home"
+                   (click)="closeModal()"
+                   class="back-button"
+                   icon="close-circle"
+                   color="dark">
+  </ion-back-button>
+  <agm-map #AgmMap [latitude]="lat" [longitude]="lng" [zoom]="15">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+</ion-content>
+
+<app-loader *ngIf="!show"></app-loader>

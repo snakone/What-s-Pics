@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class AddPage implements OnInit {
 
   submit = false;
-  loading = false;
+  loading: boolean;
 
   constructor() { }
 
