@@ -3,6 +3,7 @@ import { Post } from '@shared/interfaces/interfaces';
 import { IonSlides, ModalController } from '@ionic/angular';
 import { SLIDES_OPTS } from './slides.config';
 import { MapComponent } from '../../../../shared/components/map/map.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-post-card',
@@ -16,14 +17,17 @@ export class PostCardComponent implements OnInit {
 
   @Input() post: Post;
   @ViewChild(IonSlides) slides: IonSlides;
+  images: string[] = [];
 
   @HostListener('window:resize') onResize() {
     if (this.slides) { setTimeout(() => this.slides.update(), 100); }
   }
 
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController,
+              private http: HttpClient) { }
 
   ngOnInit() {
+    this.getImages();
   }
 
   async checkCoords() {
@@ -37,6 +41,15 @@ export class PostCardComponent implements OnInit {
       }
     });
     return await modal.present();
+  }
+
+  getImages() {
+    this.post.images.forEach(image => {
+      this.http.get(image, { responseType: 'text' })
+        .subscribe(res => {
+          this.images.push(res);
+        });
+    });
   }
 
 }

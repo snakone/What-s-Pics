@@ -40,13 +40,14 @@
   <ion-row class="box">
     <ion-col size="12">
       <div class="no-image" *ngIf="temp.length === 0">
-          <h3>0 {{'images.selected' | translate}}</h3>
+          <h4>0 {{'images.selected' | translate}}</h4>
       </div>
-      <div *ngIf="temp.length > 0">
+
         <app-post-images [temp]="temp"
-                         (delete)="temp = $event">
+                         (delete)="temp = $event"
+                         *ngIf="temp.length > 0">
         </app-post-images>
-      </div>
+
     </ion-col>
   </ion-row>
 </form>

@@ -36,10 +36,10 @@ export class HomePage implements OnInit {
   }
 
   doRefresh(event: any): void {
-    this.posts = [];
     this.postService.resetPage();
-    this.getPosts(event);
     this.refresh = false;
+    this.posts = [];
+    this.getPosts(event);
     setTimeout(() => {
       this.refresh = true;
       this.scroll = true;

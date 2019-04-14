@@ -44,6 +44,10 @@ export class StorageService {
     return this.data.id;
   }
 
+  public getRemember(): boolean {
+    return this.data.remember;
+  }
+
   // SET
   public setId(id: string): void {
     this.data.id = id;

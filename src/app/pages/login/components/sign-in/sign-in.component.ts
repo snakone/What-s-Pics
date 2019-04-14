@@ -17,6 +17,7 @@ export class SignInComponent implements OnInit {
 
   signInForm: FormGroup;
   user: User;
+  remember = false;
 
   constructor(private nav: NavController,
               private login: LoginService,
@@ -27,6 +28,7 @@ export class SignInComponent implements OnInit {
   ngOnInit() {
     this.createSignUpForm();
     this.getUser();
+    this.rememberEmail();
    }
 
   createSignUpForm(): void {
@@ -57,6 +59,7 @@ export class SignInComponent implements OnInit {
         if (res.ok) {
           this.userService.setUser(res.user);
           await this.storage.setToken(res.token);
+          this.storage.save('remember', this.remember);
           this.checkTutorial();
         }
       }, (err: HttpErrorResponse) => {
@@ -76,5 +79,16 @@ export class SignInComponent implements OnInit {
     this.nav.navigateRoot('/tabs/home');
   }
 
+  private rememberEmail() {
+    if (this.storage.getRemember() && this.storage.getId()) {
+      this.userService.getUserById(this.storage.getId())
+        .subscribe((res: UserResponse) => {
+          this.remember = true;
+          this.signInForm.controls.email.setValue(res.user.email);
+        }, (err) => {
+            console.log(err);
+        });
+    }
+  }
 
 }

@@ -3,13 +3,14 @@
   "login.button": "Login",
   "login.sign.in": "Sign In",
   "login.sign.up": "Sign Up",
-  "select.avatar": "Select an Avatar",
+  "login.remember": "Remember Email",
   "login.name": "Name",
   "login.repeat.password": "Repeat Password",
   "login.create": "Create",
   "login.welcome": "Welcome!",
   "login.invalid": "Invalid Credentials!",
   "login.error": "Server Error!",
+  "select.avatar": "Select an Avatar",
   "profile.update": "Update",
   "settings.title": "Settings",
   "settings.lang": "Language",
@@ -39,7 +40,6 @@
   "tab.add": "Add",
   "tab.profile": "Profile",
   "tab.help": "Help",
-  "fifth.slide.title": "¿Ready to start?",
   "slide.continue": "CONTINUE",
   "slide.skip.tutorial": "Do not show again",
   "slide.back": "Back",
@@ -51,5 +51,6 @@
   "third.slide.title": "Share and enjoy",
   "third.slide.description": "Your shares are visible for everyone. Upload something interesting!",
   "fourth.slide.title": "Leave your trace!",
-  "fourth.slide.description": "Have You seeing something You like? Don't miss the change and show it!"
+  "fourth.slide.description": "Have You seeing something You like? Don't miss the change and show it!",
+  "fifth.slide.title": "¿Ready to start?"
 }

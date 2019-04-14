@@ -4,7 +4,8 @@
                       *ngFor="let item of temp; let i = index">
       <ion-item>
           <ion-thumbnail slot="end">
-            <img [src]="item.image | sanitizer:'URL'">
+            <img *ngIf="!camera.loading" [src]="item.image"/>
+            <ion-spinner *ngIf="camera.loading"></ion-spinner>
           </ion-thumbnail>
           <ion-label class="image-title" text-left>
             {{item.name}}

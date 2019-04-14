@@ -22,12 +22,12 @@ export interface FileResponse {
 }
 
 export interface Post {
-  _id: string;
-  image?: string[];
-  message: string;
-  coords: string;
-  user: User;
-  created: string;
+  _id?: string;
+  images?: string[];
+  message?: string;
+  coords?: string;
+  user?: User;
+  created?: string;
 }
 
 export interface User {
@@ -44,13 +44,16 @@ export class AppStorage {
   posts?: Post[];
   token?: string;
   tutorial?: boolean;
+  remember?: boolean;
 
   constructor(token: string = STORAGE_CONSTANTS.TOKEN,
               lang: string = STORAGE_CONSTANTS.LANGUAGE,
-              tutorial: boolean = STORAGE_CONSTANTS.TUTORIAL
+              tutorial: boolean = STORAGE_CONSTANTS.TUTORIAL,
+              remember: boolean = true
               ) {
     this.token = token;
-    this.tutorial = tutorial;
     this.lang = lang;
+    this.tutorial = tutorial;
+    this.remember = remember;
   }
 }

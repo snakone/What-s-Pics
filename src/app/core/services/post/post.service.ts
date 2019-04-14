@@ -22,6 +22,7 @@ export class PostService {
   }
 
   createPost(post: Post): Observable<PostResponse> {
+    console.log(post.images);
     return this.http.post(this.API_POST, post);
   }
 

@@ -6,7 +6,6 @@
       <ion-input name="email"
                  type="email"
                  formControlName="email"
-                 value="test@gmail.com"
                  mode="md">
       </ion-input>
     </ion-item>
@@ -16,9 +15,15 @@
       <ion-input name="password"
                  type="password"
                  formControlName="password"
-                 value="1111"
                  mode="md">
       </ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="floating">{{'login.remember' | translate}}</ion-label>
+        <ion-checkbox color="light"
+                      [(ngModel)]="remember"
+                      [ngModelOptions]="{standalone: true}">
+        </ion-checkbox>
     </ion-item>
   </ion-list>
   <ion-button type="submit"

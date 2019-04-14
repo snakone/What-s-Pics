@@ -42,6 +42,10 @@ export class UserService {
     return { ...this.user };
   }
 
+  getUserById(id: string): Observable<UserResponse> {
+    return this.http.get(this.API_TOKEN + `/${id}`);
+  }
+
   setUser(user: User): void {
     this.user = user;
   }

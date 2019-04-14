@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FileResponse } from '@app/shared/interfaces/interfaces';
-
+import { CameraService } from '@app/core/services/camera/camera.service';
 
 @Component({
   selector: 'app-post-images',
@@ -12,9 +12,12 @@ export class PostImagesComponent implements OnInit {
 
   @Input() temp: FileResponse[] = [];
   @Output() delete: EventEmitter<FileResponse[]> = new EventEmitter<FileResponse[]>();
-  constructor() { }
 
-  ngOnInit() {}
+  constructor(public camera: CameraService) { }
+
+  ngOnInit() {
+    console.log(this.temp);
+  }
 
   remove(i: number) {
     this.temp.splice(i, 1);

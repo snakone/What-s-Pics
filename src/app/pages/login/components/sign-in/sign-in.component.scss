@@ -10,7 +10,7 @@ form {
 }
 
 ion-list {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 40px;
 }
 
@@ -24,4 +24,10 @@ img {
   form {
     width: 500px;
   }
+}
+
+ion-checkbox {
+  margin-left: 25px;
+  margin-top: 8px;
+  --border-width: auto;
 }

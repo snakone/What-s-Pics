@@ -6,7 +6,7 @@ import { PostService, CameraService } from '@app/core/services/services.index';
 import { Router } from '@angular/router';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { FileResponse } from '@app/shared/interfaces/interfaces';
-import { UploadService } from '../../../../core/services/upload/upload.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-post-form',
@@ -17,11 +17,10 @@ import { UploadService } from '../../../../core/services/upload/upload.service';
 export class PostFormComponent implements OnInit, OnChanges {
 
   @Input() submit: boolean;
-  @Output() loading: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() loadCoords: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   temp: FileResponse[] = [];
-  uploads: string[] = [];
-  post: Post = <Post>{};
+  post: Post = {};
   postForm: FormGroup;
   spinner: boolean;
 
@@ -30,7 +29,8 @@ export class PostFormComponent implements OnInit, OnChanges {
               private router: Router,
               private geolocation: Geolocation,
               private camera: CameraService,
-              private upload: UploadService) {
+              private http: HttpClient) {
+                this.post.images = [];
             }
 
   ngOnInit() {
@@ -51,13 +51,6 @@ export class PostFormComponent implements OnInit, OnChanges {
       if (this.postForm.invalid) {
         this.craft.toast('post.invalid');
       } else {
-        if (this.uploads) {
-          this.uploads.forEach((img: string) => {
-            this.upload.uploadImage(img);
-          });
-          this.uploads = [];
-        }
-
         this.post.message = this.postForm.value.message;
         setTimeout(() => {
           this.postService.createPost(this.post)
@@ -78,6 +71,7 @@ export class PostFormComponent implements OnInit, OnChanges {
     this.postForm.reset();
     this.router.navigateByUrl('tabs/home');
     this.temp = [];
+    this.post.images = [];
   }
 
   public toogleCoords(event: CustomEvent) {
@@ -86,7 +80,7 @@ export class PostFormComponent implements OnInit, OnChanges {
       return;
     }
     this.spinner = true;
-    this.loading.emit(true);
+    this.loadCoords.emit(true);
     this.getCoords();
   }
 
@@ -95,14 +89,14 @@ export class PostFormComponent implements OnInit, OnChanges {
      .then((res: Geoposition) => {
         setTimeout(() => {
           this.spinner = false;
-          this.loading.emit(false);
+          this.loadCoords.emit(false);
         }, 2000);
         const coords = `${res.coords.latitude},${res.coords.longitude}`;
         this.post.coords = coords;
      }).catch((error) => {
        console.log('Error getting location', error);
        this.spinner = false;
-       this.loading.emit(false);
+       this.loadCoords.emit(false);
      });
   }
 
@@ -117,8 +111,12 @@ export class PostFormComponent implements OnInit, OnChanges {
           this.craft.toast('max.file.error');
           return;
         }
-        this.temp.unshift(res);
-        this.uploads.push(res.image);
+        this.getS3Image(res.image)
+          .subscribe(image => {
+            this.post.images.unshift(res.image);
+            res.image = image;
+            this.temp.unshift(res);
+          });
       }).catch(err => {
         this.craft.toast('camera.error');
         console.log(err);
@@ -136,12 +134,20 @@ export class PostFormComponent implements OnInit, OnChanges {
           this.craft.toast('max.file.error');
           return;
         }
-        this.temp.unshift(res);
-        this.uploads.push(res.image);
+        this.getS3Image(res.image)
+        .subscribe(image => {
+          this.post.images.unshift(res.image);
+          res.image = image;
+          this.temp.unshift(res);
+        });
       }).catch(err => {
         this.craft.toast('picker.error');
         console.log(err);
       });
+  }
+
+  getS3Image(image: string) {
+    return this.http.get(image, { responseType: 'text' });
   }
 
 }

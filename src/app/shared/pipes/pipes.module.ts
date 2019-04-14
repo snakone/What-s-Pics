@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { SanitizerPipe } from './sanitizer/sanitizer.pipe';
 import { AvatarPipe } from './avatar/avatar.pipe';
 import { ImagesPipe } from './images/images.pipe';
+import { S3ImagePipe } from './s3-image/s3-image.pipe';
 
 @NgModule({
   declarations: [
     SanitizerPipe,
     AvatarPipe,
-    ImagesPipe
+    ImagesPipe,
+    S3ImagePipe
   ],
   imports: [
     CommonModule
@@ -16,7 +18,8 @@ import { ImagesPipe } from './images/images.pipe';
   exports: [
     SanitizerPipe,
     AvatarPipe,
-    ImagesPipe
+    ImagesPipe,
+    S3ImagePipe
   ]
 })
 

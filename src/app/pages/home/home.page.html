@@ -6,7 +6,7 @@
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
 
-    <app-post-grid [posts]="posts"></app-post-grid>
+    <app-post-grid *ngIf="posts.length > 0" [posts]="posts"></app-post-grid>
 
     <ion-infinite-scroll threshold="150px"
                         [disabled]="!scroll"
