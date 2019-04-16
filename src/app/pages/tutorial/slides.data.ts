@@ -25,17 +25,6 @@ export const INTRO_SLIDES: Slide[] = [
   }
 ];
 
-export const SLIDER_OPTIONS = {
-  effect: 'flip',
-  slidesPerView: 1,
-  pagination: {
-    el: '.swiper-pagination',
-    type: 'bullets',
-    clickable: true,
-  },
-  zoom: false
- };
-
  export interface Slide {
    title: string;
    description: string;

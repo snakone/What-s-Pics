@@ -44,7 +44,7 @@ export class HttpService {
     const headers = _headers || new HttpHeaders();
 
     return headers
-      .set(this.auth, this.storage.getToken())
+      .set(this.auth, this.storage.getToken() || '')
       .set(this.content, contentType)
       .set(this.accept, accept);
   }

@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
-import { AlertController, ToastController, PopoverController } from '@ionic/angular';
-import { SettingsComponent } from '../components/settings/settings/settings.component';
+import {
+  AlertController,
+  ToastController,
+  PopoverController,
+  ModalController
+} from '@ionic/angular';
+import { SettingsComponent } from '../components/settings/settings.component';
 import { TranslateService } from '@ngx-translate/core';
+import { ComponentRef } from '@ionic/core';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +18,8 @@ export class CrafterService {
     constructor(private alertCtrl: AlertController,
                 private toastCtrl: ToastController,
                 private popOverCtrl: PopoverController,
-                private translate: TranslateService) {
+                private translate: TranslateService,
+                private modalCtrl: ModalController) {
       console.log('CrafterService');
   }
 
@@ -23,11 +30,11 @@ export class CrafterService {
   public async alert(message: string) {
     message = this.translateMessage(message);
     const alert = await this.alertCtrl.create({
-      header: 'What The Pics',
+      header: 'What\'s Pics',
       message,
       buttons: ['OK']
     });
-    alert.present();
+    await alert.present();
   }
 
   public async toast(message: string) {
@@ -39,7 +46,7 @@ export class CrafterService {
       position: 'top',
       cssClass: 'toast-sheet'
     });
-    toast.present();
+    await toast.present();
   }
 
   public async popOver(ev: any) {
@@ -49,7 +56,17 @@ export class CrafterService {
       translucent: true,
       mode: 'md'
     });
-    return await popover.present();
+    await popover.present();
+  }
+
+  public async modal(component: ComponentRef, data?: any) {
+    if (this.modalCtrl.getTop()) { return; }
+    console.log(data);
+    const modal = await this.modalCtrl.create({
+      component,
+      componentProps: data
+    });
+    return await modal.present();
   }
 
   private translateMessage(msg: string): string {

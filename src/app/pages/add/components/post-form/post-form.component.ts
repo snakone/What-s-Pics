@@ -41,7 +41,7 @@ export class PostFormComponent implements OnInit, OnChanges {
     this.postForm = new FormGroup({
        message: new FormControl(null,
                                   [Validators.required,
-                                   Validators.minLength(5),
+                                   Validators.minLength(3),
                                    Validators.maxLength(500)]),
     coords: new FormControl(false, [Validators.nullValidator])});
   }
@@ -53,6 +53,7 @@ export class PostFormComponent implements OnInit, OnChanges {
       } else {
         this.post.message = this.postForm.value.message;
         setTimeout(() => {
+          console.log(this.post);
           this.postService.createPost(this.post)
           .subscribe((res: PostResponse) => {
             if (res.ok) { this.handleEvent(res.post); }

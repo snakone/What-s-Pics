@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { INTRO_SLIDES, SLIDER_OPTIONS } from './slides.data';
+import { INTRO_SLIDES} from './slides.data';
 import { IonSlides, NavController} from '@ionic/angular';
 import { StorageService } from '../../core/storage/storage.service';
+import { SLIDES_OPTIONS } from '@app/shared/interfaces/interfaces';
 
 @Component({
   selector: 'app-tutorial',
@@ -13,7 +14,7 @@ export class TutorialPage implements OnInit {
 
   @ViewChild('slider') slider: IonSlides;
   slides: any[] = INTRO_SLIDES;
-  sliderOptions = SLIDER_OPTIONS;
+  sliderOptions = SLIDES_OPTIONS;
   index: number;
   checkbox = true;
 

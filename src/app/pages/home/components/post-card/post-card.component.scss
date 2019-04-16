@@ -13,8 +13,9 @@ ion-card {
 }
 
 ion-slides {
-  --bullet-background: var(--ion-color-light);
-  --bullet-background-active: var(--ion-color-pink-dark);
+  --bullet-background: black;
+  --bullet-background-active: var(--ion-color-light);
+  height: 250px;
 }
 
 ion-slide {
@@ -36,4 +37,5 @@ ion-button {
   height: 350px;
   width: 100%;
 }
+
 

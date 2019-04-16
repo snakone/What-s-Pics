@@ -12,6 +12,7 @@
   "login,error": "Error en el Servidor!",
   "select.avatar": "Selecciona un Avatar",
   "profile.update": "Actualizar",
+  "profile.logout": "Desconectar",
   "settings.title": "Configuración",
   "settings.lang": "Idioma",
   "settings.button": "Guardar",

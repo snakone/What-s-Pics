@@ -2,3 +2,9 @@ ion-grid {
   max-width: 812px;
 }
 
+@media (min-width: 812px) {
+  ion-grid {
+    margin: 5% auto;
+  }
+}
+

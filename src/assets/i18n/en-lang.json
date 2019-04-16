@@ -12,6 +12,7 @@
   "login.error": "Server Error!",
   "select.avatar": "Select an Avatar",
   "profile.update": "Update",
+  "profile.logout": "Log out",
   "settings.title": "Settings",
   "settings.lang": "Language",
   "settings.button": "Save",

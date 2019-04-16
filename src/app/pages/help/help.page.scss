@@ -1,0 +1,65 @@
+ion-item {
+  --padding-end: 16px !important;
+}
+
+.question {
+  color: var(--ion-color-pink-tint);
+  font-weight: bold;
+}
+
+.selected {
+  color: var(--ion-color-light);
+}
+
+ion-slide {
+  height: auto;
+  min-height: 100%;
+}
+
+ion-content {
+  height: 100%;
+}
+
+.header {
+  position: relative;
+  top: 0;
+  margin-bottom: 25px;
+}
+
+.help {
+  width: 340px;
+  margin: 0 auto;
+  min-height: 100%;
+}
+
+h3 {
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: .9em;
+}
+
+@media (max-width: 812px) and (min-width: 400px) {
+  .help {
+    width: 90%;
+  }
+}
+
+@media (min-width: 812px) {
+  .help {
+    width: 520px;
+  }
+}
+
+@media (max-height: 412px) {
+  .help {
+    height: auto;
+  }
+
+  ion-list {
+    margin-bottom: 15px;
+  }
+}
+
+

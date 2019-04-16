@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '@app/core/services/post/post.service';
 import { PostResponse, Post } from '@app/shared/interfaces/interfaces';
-import { UserService } from '@core/services/user/user.service';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +20,6 @@ export class HomePage implements OnInit {
   ngOnInit(): void {
     this.getPosts();
     this.getStream();
-
   }
 
   getPosts(event?: any): void {
