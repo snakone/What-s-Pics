@@ -10,9 +10,14 @@
 </ion-header>
 
 <ion-content class="padding" text-center>
-  <ion-slide>
-    <app-update-form (updated)="user = $event"
-                     [user]="user">
-    </app-update-form>
-  </ion-slide>
+  <ion-slides #slides pager="true" [options]="sliderOptions">
+    <ion-slide class="animated fadeIn slow">
+      <app-update-form (updated)="user = $event"
+                        [user]="user">
+      </app-update-form>
+    </ion-slide>
+    <ion-slide class="animated fadeIn slow">
+      <app-profile-posts [user]="user"></app-profile-posts>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

@@ -7,6 +7,7 @@
 form {
   width: 310px;
   margin: 0 auto;
+  min-height: 100%;
 }
 
 ion-list {
@@ -27,7 +28,7 @@ img {
 }
 
 ion-checkbox {
-  margin-left: 25px;
-  margin-top: 8px;
+  position: relative;
+  top: 13px;
   --border-width: auto;
 }

@@ -1,0 +1,44 @@
+.profile-posts {
+  width: 310px;
+  margin: 0 auto;
+  min-height: 100%;
+  margin-top: -62px;
+}
+
+@media (min-width: 812px) {
+  .profile-posts {
+    width: 500px;
+  }
+}
+
+@media (max-height: 400px) {
+  .profile-posts {
+    margin-top: 0;
+  }
+}
+
+ion-button {
+  margin-top: 41px;
+}
+
+ion-list {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+ion-icon {
+  position: relative;
+  top: 7px;
+  font-size: 25px;
+  color: var(--ion-color-pink-tint);
+}
+
+ion-note {
+  font-size: 16px;
+  margin-top: -3px;
+}
+
+h3 {
+  display: inline-block;
+  margin-left: 12px;
+}

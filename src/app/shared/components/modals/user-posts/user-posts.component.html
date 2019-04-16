@@ -1,0 +1,22 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>Your Posts</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="tabs/profile"
+                       (click)="close()"
+                       icon="close">
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="posts.length > 0">
+    <ion-row>
+      <ion-col size="12" size-lg="6" size-md="6" size-sm="6" size-xs="12"
+              *ngFor="let post of posts">
+        <app-user-post-card [post]="post"></app-user-post-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,13 @@
+.sc-ion-back-button-md-h {
+  --icon-padding-end: 0 !important;
+}
+
+ion-grid {
+  max-width: 812px;
+}
+
+@media (min-width: 880px) {
+  ion-title {
+    margin-left: 30px;
+  }
+}

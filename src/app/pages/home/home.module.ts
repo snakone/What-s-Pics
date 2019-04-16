@@ -7,8 +7,8 @@ import { RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
 import { SharedModule } from '@app/shared/shared.module';
 import { ComponentsModule } from '@app/shared/components/components.module';
-import { PostCardComponent } from './components/post-card/post-card.component';
 import { PostGridComponent } from './components/post-grid/post-grid.component';
+import { PostCardComponent } from './components/post-card/post-card.component';
 
 @NgModule({
   imports: [
@@ -26,8 +26,9 @@ import { PostGridComponent } from './components/post-grid/post-grid.component';
   ],
   declarations: [
     HomePage,
-    PostGridComponent,
-    PostCardComponent]
+    PostCardComponent,
+    PostGridComponent
+  ]
 })
 
 export class HomePageModule {}

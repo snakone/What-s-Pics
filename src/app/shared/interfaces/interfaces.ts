@@ -15,6 +15,13 @@ export interface UserResponse {
   token?: string;
 }
 
+export interface FavoriteResponse {
+  ok: boolean;
+  message: string;
+  favorites: Favorite[];
+  page?: number;
+}
+
 export interface FileResponse {
   name: string;
   image: string;
@@ -28,6 +35,7 @@ export interface Post {
   coords?: string;
   user?: User;
   created?: string;
+  likes?: number;
 }
 
 export interface User {
@@ -36,6 +44,11 @@ export interface User {
   name: string;
   email: string;
   password: string;
+}
+
+export interface Favorite {
+  user: User;
+  post: Post;
 }
 
 export class AppStorage {
@@ -57,3 +70,21 @@ export class AppStorage {
     this.remember = remember;
   }
 }
+
+export interface FAQ {
+  question: string;
+  answer: string;
+  collapsed: boolean;
+  arrow: string;
+}
+
+export const SLIDES_OPTIONS: any = {
+  effect: 'flip',
+  slidesPerView: 1,
+  pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+    clickable: true,
+  },
+  zoom: false
+ };

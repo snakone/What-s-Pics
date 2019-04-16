@@ -1,6 +1,5 @@
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-  <app-pick-avatar (avatar)="avatar = $event"
-                    [selected]="'av-1.png'">
+  <app-pick-avatar (avatar)="avatar = $event">
   </app-pick-avatar>
   <ion-list>
     <ion-item>

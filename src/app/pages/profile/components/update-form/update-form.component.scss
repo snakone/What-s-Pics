@@ -2,6 +2,7 @@ form {
   width: 310px;
   margin: 0 auto;
   min-height: 100%;
+  margin-top: -52px;
 }
 
 .sc-ion-input-md-h {
@@ -11,7 +12,7 @@ form {
 }
 
 ion-list {
-  margin-top: 20px;
+  margin-top: 15px;
   margin-bottom: 35px;
 }
 
@@ -25,5 +26,15 @@ img {
 @media (min-width: 812px) {
   form {
     width: 500px;
+  }
+}
+
+@media (max-height: 400px) {
+  form {
+    margin-top: 0;
+  }
+
+  ion-list {
+    margin-bottom: 40px;
   }
 }

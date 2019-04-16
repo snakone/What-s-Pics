@@ -13,7 +13,7 @@ export class PickAvatarComponent implements OnInit {
   @ViewChild(IonSlides) slides: IonSlides;
   avatars: Avatar[] = AVATARS;
   @Output() avatar: EventEmitter<string> = new EventEmitter<string>();
-  @Input() selected = 'av-1.png';
+  @Input() selected: string;
 
   slidesAvatarOpts = SliderAvatarOpts;
 
@@ -24,9 +24,7 @@ export class PickAvatarComponent implements OnInit {
   }
 
   setAvatar() {
-    if (!this.selected) {
-      this.avatars.map(x => x.selected = false);
-    }
+    if (!this.selected) { return; }
 
     this.avatars.map(x => {
       if (x.img === this.selected) {

@@ -2,9 +2,15 @@
   padding-top: 0px !important;
 }
 
+ion-slides {
+  --bullet-background: black;
+  --bullet-background-active: var(--ion-color-light);
+  height: 100%;
+}
+
 ion-slide {
   height: auto;
-  min-height: calc(100% - 52px);
+  min-height: 100%;
 }
 
 ion-content {
@@ -12,8 +18,8 @@ ion-content {
 }
 
 @media (max-height: 400px) {
-  ion-slide {
-    margin-bottom: 40px;
-    margin-top: 0;
+  ion-slides {
+    height: auto;
+    margin-bottom: 30px;
   }
 }

@@ -1,4 +1,4 @@
-<ion-card>
+<ion-card class="animated fadeIn">
   <ion-item lines="none" class="section">
     <ion-avatar slot="start">
       <img [src]="post.user.avatar | avatar"/>
@@ -31,7 +31,7 @@
       <ion-button>
         <ion-icon color="light" name="heart-empty"></ion-icon>
       </ion-button>
-      <ion-button>
+      <ion-button (click)="favorite(post._id)">
         <ion-icon color="light" name="bookmark"></ion-icon>
       </ion-button>
     </ion-buttons>

@@ -1,0 +1,56 @@
+<div class="profile-posts">
+  <ion-list>
+    <ion-list-header>
+      <ion-label>
+        <ion-icon slot="start" name="paper"></ion-icon>
+        <h3>Posts</h3>
+      </ion-label>
+    </ion-list-header>
+    <ion-item detail (click)="goPosts()">
+      View the Post you made
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>
+          <ion-icon slot="start" name="star"></ion-icon>
+        <h3>Favorites</h3>
+      </ion-label>
+    </ion-list-header>
+    <ion-item detail (click)="goFavorites()">
+      View your Favorites
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>
+          <ion-icon slot="start" name="heart"></ion-icon>
+        <h3>Likes</h3>
+      </ion-label>
+    </ion-list-header>
+    <ion-item>
+      Your Posts total likes
+      <ion-note color="light" slot="end">{{likes}}</ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>
+          <ion-icon slot="start" name="alert"></ion-icon>
+        <h3>Danger Zone</h3>
+      </ion-label>
+    </ion-list-header>
+    <ion-item detail>
+      <ion-text color="danger">
+        <strong>Delete your Account</strong>
+      </ion-text>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full"
+              color="primary"
+              shape="round"
+              mode="md"
+              (click)="logout()">
+        {{'profile.logout' | translate}}
+  </ion-button>
+</div>

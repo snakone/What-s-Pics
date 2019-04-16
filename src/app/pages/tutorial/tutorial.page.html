@@ -21,14 +21,15 @@
               (ionSlideDidChange)="getIndex()"
               [options]="sliderOptions">
 
-      <ion-slide *ngFor="let slide of slides">
+      <ion-slide class="animated fadeIn"
+                *ngFor="let slide of slides">
         <div class="slide">
           <img [src]="slide.image"/>
           <h2>{{slide.title | translate}}</h2>
           <p [innerHTML]="slide.description | translate"></p>
         </div>
       </ion-slide>
-      <ion-slide>
+      <ion-slide class="animated fadeIn">
         <div class="slide">
           <img src="assets/img/slides/slide5.png"/>
           <h2>{{'fifth.slide.title' | translate}}</h2>

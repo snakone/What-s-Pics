@@ -1,0 +1,26 @@
+<ion-card class="animated fadeIn">
+  <ion-slides #slides *ngIf="images.length > 0"
+              pager="true"
+              [options]="slideOpts">
+    <ion-slide *ngFor="let image of images"
+                [style]="image | sanitizer">
+    </ion-slide>
+  </ion-slides>
+
+  <ion-item lines="none" class="content">
+    <ion-label class="content-label" text-wrap>
+      {{post.message}}
+    </ion-label>
+  </ion-item>
+  <ion-item lines="none" class="section">
+    <ion-label>{{post.created}}</ion-label>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="post.coords" (click)="checkCoords()">
+        <ion-icon color="light" name="pin"></ion-icon>
+      </ion-button>
+      <ion-button (click)="favorite(post._id)">
+        <ion-icon color="light" name="bookmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+</ion-card>
