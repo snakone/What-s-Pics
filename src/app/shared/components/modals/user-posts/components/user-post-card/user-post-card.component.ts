@@ -60,7 +60,6 @@ export class UserPostCardComponent implements OnInit {
     this.user.addFavorite(id)
       .subscribe(async (res: FavoriteResponse) => {
         if (res.ok) {
-          console.log(res);
           this.craft.toast('Post Added to Favorites!');
         }
       }, ((err: HttpErrorResponse) => {

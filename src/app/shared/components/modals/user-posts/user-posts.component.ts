@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Post } from '@app/shared/interfaces/interfaces';
+import { Post, PostResponse } from '@app/shared/interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
+import { PostService } from '@core/services/post/post.service';
 
 @Component({
   selector: 'app-user-posts',
@@ -10,11 +11,22 @@ import { ModalController } from '@ionic/angular';
 
 export class UserPostsComponent implements OnInit {
 
-  @Input() posts: Post[];
+  posts: Post[];
 
-  constructor(private modal: ModalController) { }
+  constructor(private modal: ModalController,
+              private postService: PostService) { }
 
   ngOnInit() {
+    this.getPostByUser();
+  }
+
+  private getPostByUser() {
+    this.postService.getPostByUser()
+      .subscribe((res: PostResponse) => {
+        if (res.ok) {
+          this.posts = res.posts;
+        }
+      });
   }
 
   close(): void {

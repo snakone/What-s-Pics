@@ -17,7 +17,6 @@ import { HttpClient } from '@angular/common/http';
 export class PostFormComponent implements OnInit, OnChanges {
 
   @Input() submit: boolean;
-  @Output() loadCoords: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   temp: FileResponse[] = [];
   post: Post = {};
@@ -48,12 +47,11 @@ export class PostFormComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     if (this.postForm) {
-      if (this.postForm.invalid) {
+      if (this.postForm.invalid || this.spinner) {
         this.craft.toast('post.invalid');
       } else {
         this.post.message = this.postForm.value.message;
         setTimeout(() => {
-          console.log(this.post);
           this.postService.createPost(this.post)
           .subscribe((res: PostResponse) => {
             if (res.ok) { this.handleEvent(res.post); }
@@ -81,7 +79,6 @@ export class PostFormComponent implements OnInit, OnChanges {
       return;
     }
     this.spinner = true;
-    this.loadCoords.emit(true);
     this.getCoords();
   }
 
@@ -90,14 +87,12 @@ export class PostFormComponent implements OnInit, OnChanges {
      .then((res: Geoposition) => {
         setTimeout(() => {
           this.spinner = false;
-          this.loadCoords.emit(false);
-        }, 2000);
+        }, 5000);
         const coords = `${res.coords.latitude},${res.coords.longitude}`;
         this.post.coords = coords;
      }).catch((error) => {
        console.log('Error getting location', error);
        this.spinner = false;
-       this.loadCoords.emit(false);
      });
   }
 

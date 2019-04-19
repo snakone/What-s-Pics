@@ -7,19 +7,19 @@
   <ion-slide class="animated fadeIn">
     <div class="help">
       <div class="header">
-        <h3>Help Center</h3>
-        <span>Frequently Asked Questions</span>
+        <h3>{{'help.center' | translate}}</h3>
+        <span>{{'help.faq' | translate}}</span>
       </div>
       <ion-list>
           <div *ngFor="let q of questions">
             <ion-item (click)="expand(q)">
               <ion-label class="question" [ngClass]="{'selected': !q.collapsed}">
-                {{q.question}}
+                {{q.question | translate}}
               </ion-label>
               <ion-icon slot="end" color="light" [name]="q.arrow"></ion-icon>
             </ion-item>
             <ion-item lines="none" class="animated fadeIn" *ngIf="!q.collapsed">
-              <p [innerHTML]="q.answer"></p>
+              <p [innerHTML]="q.answer | translate"></p>
             </ion-item>
           </div>
         </ion-list>

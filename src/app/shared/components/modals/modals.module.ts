@@ -19,6 +19,12 @@ import { UserPostCardComponent } from './user-posts/components/user-post-card/us
     IonicModule,
     SharedModule
   ],
+  exports: [
+    UserPostsComponent,
+    UserFavoritesComponent,
+    FavoriteCardComponent,
+    UserPostCardComponent
+  ],
   entryComponents: [
     UserPostsComponent,
     UserFavoritesComponent

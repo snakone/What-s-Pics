@@ -25,7 +25,6 @@ export class PickAvatarComponent implements OnInit {
 
   setAvatar() {
     if (!this.selected) { return; }
-
     this.avatars.map(x => {
       if (x.img === this.selected) {
         x.selected = true;

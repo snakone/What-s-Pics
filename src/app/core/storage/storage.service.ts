@@ -51,28 +51,23 @@ export class StorageService {
   // SET
   public setId(id: string): void {
     this.data.id = id;
+    this.save('id', id);
   }
 
   public setToken(token: string): void {
     if (!token) { return; }
     this.data.token = token;
-    this.save(STORAGE_CONSTANTS.TOKEN, token);
+    this.save(STORAGE_CONSTANTS.TOKEN_KEY, token);
   }
 
   // CLEAR
   public async clear(): Promise<void> {
-    this.data.token = '';
-    this.save();
+    this.save(STORAGE_CONSTANTS.TOKEN_KEY, '');
   }
 
   public async reset(): Promise<void> {
     this.data = new AppStorage();
     await this.storage.clear();
-  }
-
-    public removeToken(): void {
-    this.data.token = '';
-    this.save(STORAGE_CONSTANTS.TOKEN, '');
   }
 
 }

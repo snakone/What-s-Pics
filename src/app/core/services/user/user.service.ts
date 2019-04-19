@@ -4,7 +4,9 @@ import { HttpService } from '../http/http.service';
 import { User, UserResponse, Post, FavoriteResponse} from '@app/shared/interfaces/interfaces';
 import { StorageService } from '@app/core/storage/storage.service';
 import { map } from 'rxjs/operators';
-import { Observable} from 'rxjs';
+import { Observable, throwError} from 'rxjs';
+import { HttpParams } from '@angular/common/http';
+import { LikeResponse } from '../../../shared/interfaces/interfaces';
 
 @Injectable()
 
@@ -13,18 +15,34 @@ export class UserService {
   readonly API_USERS = APP_CONSTANTS.END_POINT + 'users';
   readonly API_TOKEN = APP_CONSTANTS.END_POINT + 'user';
   readonly API_FAVORITES = APP_CONSTANTS.END_POINT + 'favorites';
+  readonly API_LIKES = APP_CONSTANTS.END_POINT + 'likes';
 
-  private user: User = <User>{};
+  private user: User;
   public token = '';
 
   constructor(private http: HttpService,
               private storage: StorageService) {
-    console.log('UserService');
+      console.log('UserService');
     }
 
   public getUser(): User {
     if (!this.user) { this.verifyToken(); }
     return { ...this.user };
+  }
+
+  public loadUser(): Promise<any> {
+    return new Promise((resolve, rej) => {
+      const id = this.storage.getId();
+      if (id) {
+        this.getUserById(id)
+          .subscribe((res: UserResponse) => {
+            if (res.ok) {
+              this.user = res.user;
+              resolve();
+            }
+        });
+      } else { rej(); }
+    });
   }
 
   public getUserById(id: string): Observable<UserResponse> {
@@ -41,6 +59,22 @@ export class UserService {
 
   public getFavoritesByUser(): Observable<FavoriteResponse> {
     return this.http.get(this.API_FAVORITES);
+  }
+
+  public removeFavorite(id: string): Observable<any> {
+    return this.http.delete(this.API_FAVORITES, null, new HttpParams().set('id', id));
+  }
+
+  public doLike(id: string): Observable<LikeResponse> {
+    return this.http.post(this.API_LIKES, { id });
+  }
+
+  public refreshToken(): Observable<UserResponse> {
+    if (!this.user) {
+      this.loadUser();
+      return;
+    }
+    return this.http.post(this.API_TOKEN + '/token', this.user);
   }
 
   public setUser(user: User): void {
@@ -63,7 +97,6 @@ export class UserService {
           }
         }, (err => {
             resolve(false);
-            console.log(err);
       }));
     });
   }

@@ -6,6 +6,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UserService } from '@app/core/services/services.index';
 import { StorageService } from '@app/core/storage/storage.service';
 import { CrafterService } from '@app/shared/crafter/crafter.service';
+import { LikeResponse } from '../../../../shared/interfaces/interfaces';
 
 @Component({
   selector: 'app-post-card',
@@ -59,11 +60,25 @@ export class PostCardComponent implements OnInit {
     }
   }
 
+  like(id: string) {
+    this.user.doLike(id).subscribe((res: LikeResponse) => {
+      if (res.ok) {
+        this.craft.toast('Like added!');
+      }
+    }, ((err: HttpErrorResponse) => {
+        if (err.status === 406) {
+          this.craft.toast('You already liked this Post!');
+        } else {
+          this.craft.toast('Error Updating.');
+          console.log(err);
+        }
+  }));
+}
+
   favorite(id: string) {
     this.user.addFavorite(id)
       .subscribe(async (res: FavoriteResponse) => {
         if (res.ok) {
-          console.log(res);
           this.craft.toast('Post Added to Favorites!');
         }
       }, ((err: HttpErrorResponse) => {

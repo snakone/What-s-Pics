@@ -1,6 +1,6 @@
 <ion-header no-border>
   <ion-toolbar>
-    <ion-title>Your Favorites</ion-title>
+    <ion-title>{{'your.favorites.title' | translate}}</ion-title>
     <ion-buttons slot="end">
       <ion-back-button defaultHref="tabs/profile"
                        (click)="close()"
@@ -11,12 +11,22 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid *ngIf="favorites.length > 0">
+  <ion-grid *ngIf="favorites">
     <ion-row>
       <ion-col size="12" size-lg="6" size-md="6" size-sm="6" size-xs="12"
               *ngFor="let favorite of favorites">
-        <app-favorite-card [favorite]="favorite"></app-favorite-card>
+        <app-favorite-card (removed)="remove($event)"
+                           [favorite]="favorite">
+        </app-favorite-card>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-slide *ngIf="!favorites">
+    <ion-spinner></ion-spinner>
+  </ion-slide>
+  <div *ngIf="favorites">
+    <ion-slide *ngIf="favorites.length === 0">
+        {{'no.favorites' | translate}}
+    </ion-slide>
+  </div>
 </ion-content>

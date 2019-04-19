@@ -38,6 +38,12 @@ export class HttpService {
     return this.http.put<T>(url, body, { headers: this.createHeaders(headers), params });
   }
 
+  public delete<T>(url: string,
+                   headers?: HttpHeaders,
+                   params?: HttpParams): Observable<T> {
+    return this.http.delete<T>(url, { headers: this.createHeaders(headers), params });
+}
+
   private createHeaders(_headers?: HttpHeaders): HttpHeaders {
     const contentType = _headers ? (_headers.get(this.type) || this.default) : this.default;
     const accept = _headers ? (_headers.get(this.accept) || this.default) : this.default;

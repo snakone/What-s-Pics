@@ -7,42 +7,42 @@
       </ion-label>
     </ion-list-header>
     <ion-item detail (click)="goPosts()">
-      View the Post you made
+      {{'your.posts' | translate}}
     </ion-item>
   </ion-list>
   <ion-list>
     <ion-list-header>
       <ion-label>
           <ion-icon slot="start" name="star"></ion-icon>
-        <h3>Favorites</h3>
+        <h3>{{'favorites' | translate}}</h3>
       </ion-label>
     </ion-list-header>
     <ion-item detail (click)="goFavorites()">
-      View your Favorites
+      {{'your.favorites' | translate}}
     </ion-item>
   </ion-list>
   <ion-list>
     <ion-list-header>
       <ion-label>
           <ion-icon slot="start" name="heart"></ion-icon>
-        <h3>Likes</h3>
+        <h3>{{'likes.likes' | translate}}</h3>
       </ion-label>
     </ion-list-header>
     <ion-item>
-      Your Posts total likes
-      <ion-note color="light" slot="end">{{likes}}</ion-note>
+      {{'your.likes' | translate}}
+      <ion-note color="light" slot="end">{{likes || 0}}</ion-note>
     </ion-item>
   </ion-list>
   <ion-list>
     <ion-list-header>
       <ion-label>
           <ion-icon slot="start" name="alert"></ion-icon>
-        <h3>Danger Zone</h3>
+        <h3>{{'danger.zone' | translate}}</h3>
       </ion-label>
     </ion-list-header>
     <ion-item detail>
       <ion-text color="danger">
-        <strong>Delete your Account</strong>
+        <strong>{{'delete.account' | translate}}</strong>
       </ion-text>
     </ion-item>
   </ion-list>
