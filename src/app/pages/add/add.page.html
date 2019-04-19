@@ -2,8 +2,7 @@
   <ion-toolbar>
     <ion-buttons slot="end">
       <ion-button (click)="createPost()"
-                  color="light"
-                  [disabled]="loadCoords">
+                  color="light">
         <ion-icon name="send"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -11,8 +10,7 @@
 </ion-header>
 <ion-content class="padding" padding>
   <ion-slide class="animated fadeIn">
-    <app-post-form (loadCoords)="loadCoords = $event"
-                   [submit]="submit">
+    <app-post-form [submit]="submit">
     </app-post-form>
   </ion-slide>
 </ion-content>

@@ -1,6 +1,6 @@
 import { NgModule, Optional, SkipSelf, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { ErrorHandlerService } from '@core/error-handler/error-handler.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -12,6 +12,7 @@ import { ServicesModule } from '@core/services/services.module';
 import { StorageModule } from '@core/storage/storage.module';
 import { environment } from '@env/environment';
 import { AgmCoreModule } from '@agm/core';
+import { JwtInterceptor } from './services/http/jwt.interceptor';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, CORE_MODULE_CONSTANTS.TRANSLATE_CONFIG.I18N_PATH,
@@ -40,6 +41,7 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [],
   providers: [
     LanguageService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: CORE_MODULE_CONFIG, useValue: CORE_MODULE_CONSTANTS },
     { provide: ErrorHandler, useClass: ErrorHandlerService }
   ]

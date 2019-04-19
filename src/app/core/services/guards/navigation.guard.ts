@@ -19,7 +19,8 @@ export class NavigationGuard implements CanActivate {
     return this.user.verifyToken()
       .then(async (res) => {
         if (!res) {
-          await this.storage.removeToken();
+          await this.storage.clear();
+          if (this.storage.getId()) { return res; }
           this.nav.navigateRoot('/login');
         }
         return res;

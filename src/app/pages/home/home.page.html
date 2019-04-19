@@ -15,7 +15,5 @@
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>
-  <div *ngIf="loading">
-    <app-loader></app-loader>
-  </div>
+  <app-loader *ngIf="loading"></app-loader>
 </ion-content>

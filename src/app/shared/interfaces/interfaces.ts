@@ -22,6 +22,12 @@ export interface FavoriteResponse {
   page?: number;
 }
 
+export interface LikeResponse {
+  ok: boolean;
+  message: string;
+  like: Like[];
+}
+
 export interface FileResponse {
   name: string;
   image: string;
@@ -47,6 +53,13 @@ export interface User {
 }
 
 export interface Favorite {
+  _id?: string;
+  user: User;
+  post: Post;
+}
+
+export interface Like {
+  _id?: string;
   user: User;
   post: Post;
 }

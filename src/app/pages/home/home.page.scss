@@ -1,16 +1,9 @@
-.icon {
-  width: 30px;
-  margin-left: 5px;
-}
-
-ion-button {
-  text-transform: capitalize!important;
-}
-
 ion-content {
   height: 100%;
 }
 
 ion-slide {
   height: 100%;
+  position: absolute;
+  padding: 0 70px;
 }

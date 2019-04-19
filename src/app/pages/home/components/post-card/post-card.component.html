@@ -28,11 +28,11 @@
       <ion-button *ngIf="post.coords" (click)="checkCoords()">
         <ion-icon color="light" name="pin"></ion-icon>
       </ion-button>
-      <ion-button>
+      <ion-button (click)="like(post._id)">
         <ion-icon color="light" name="heart-empty"></ion-icon>
       </ion-button>
       <ion-button (click)="favorite(post._id)">
-        <ion-icon color="light" name="bookmark"></ion-icon>
+        <ion-icon color="light" name="star"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-item>

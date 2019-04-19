@@ -36,6 +36,7 @@ export function Factory(provider: StorageService) {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: APP_CONFIG, useValue: APP_CONSTANTS },
     { provide: APP_INITIALIZER, useFactory: Factory, deps: [StorageService], multi: true }
+
   ],
   bootstrap: [AppComponent]
 })

@@ -28,7 +28,7 @@ export class SignInComponent implements OnInit {
   ngOnInit() {
     this.createSignUpForm();
     this.getUser();
-    this.rememberEmail();
+    this.rememberMe();
    }
 
   createSignUpForm(): void {
@@ -79,11 +79,12 @@ export class SignInComponent implements OnInit {
     this.nav.navigateRoot('/tabs/home');
   }
 
-  private rememberEmail() {
+  private rememberMe() {
     if (this.storage.getRemember() && this.storage.getId()) {
       this.userService.getUserById(this.storage.getId())
         .subscribe((res: UserResponse) => {
           this.remember = true;
+          this.user = res.user;
           this.signInForm.controls.email.setValue(res.user.email);
         }, (err) => {
             console.log(err);

@@ -1,6 +1,6 @@
 <ion-header no-border>
   <ion-toolbar>
-    <ion-title>Your Posts</ion-title>
+    <ion-title>{{'your.post.title' | translate}}</ion-title>
     <ion-buttons slot="end">
       <ion-back-button defaultHref="tabs/profile"
                        (click)="close()"
@@ -11,12 +11,21 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid *ngIf="posts.length > 0">
+  <ion-grid *ngIf="posts">
     <ion-row>
       <ion-col size="12" size-lg="6" size-md="6" size-sm="6" size-xs="12"
               *ngFor="let post of posts">
-        <app-user-post-card [post]="post"></app-user-post-card>
+        <app-user-post-card [post]="post">
+        </app-user-post-card>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-slide *ngIf="!posts">
+    <ion-spinner></ion-spinner>
+  </ion-slide>
+  <div *ngIf="posts">
+    <ion-slide *ngIf="posts.length === 0">
+        {{'no.post' | translate}}
+    </ion-slide>
+  </div>
 </ion-content>
