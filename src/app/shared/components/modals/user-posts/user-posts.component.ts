@@ -12,25 +12,36 @@ import { PostService } from '@core/services/post/post.service';
 export class UserPostsComponent implements OnInit {
 
   posts: Post[];
+  scroll = true;
 
   constructor(private modal: ModalController,
               private postService: PostService) { }
 
   ngOnInit() {
+    this.postService.resetPage();
     this.getPostByUser();
   }
 
-  private getPostByUser() {
+  private getPostByUser(event?: any) {
     this.postService.getPostByUser()
       .subscribe((res: PostResponse) => {
         if (res.ok) {
-          this.posts = res.posts;
+          if (!this.posts) { this.posts = []; }
+          this.posts.push(...res.posts);
+          if (event) { event.target.complete(); }
+          if (event && res.posts.length === 0) {
+            this.scroll = false;
+          }
         }
       });
   }
 
   close(): void {
     this.modal.dismiss();
+  }
+
+  onScroll(event: any): void {
+    this.getPostByUser(event);
   }
 
 }

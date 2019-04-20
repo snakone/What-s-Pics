@@ -13,6 +13,7 @@ export class PostService {
   public page = 0;
   readonly API_POST = APP_CONSTANTS.END_POINT + 'posts';
   readonly API_POST_USER = APP_CONSTANTS.END_POINT + 'posts/user';
+  readonly API_POST_LIKES = APP_CONSTANTS.END_POINT + 'posts/likes';
   stream: Subject<Post> = new Subject<Post>();
 
   constructor(private http: HttpService) {
@@ -29,7 +30,19 @@ export class PostService {
   }
 
   getPostByUser(): Observable<PostResponse> {
-    return this.http.get(this.API_POST_USER);
+    this.page++;
+    return this.http.get(this.API_POST_USER + '?page=' + this.page);
+  }
+
+  getTotalLikes(): Observable<number> {
+    return this.http.get(this.API_POST_LIKES)
+      .pipe(map((res: PostResponse) => {
+        let total = 0;
+        res.posts.map(x => {
+          total += x.likes;
+        });
+        return total;
+      }));
   }
 
   streamPost(post: Post) {

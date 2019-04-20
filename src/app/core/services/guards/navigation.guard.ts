@@ -20,8 +20,8 @@ export class NavigationGuard implements CanActivate {
       .then(async (res) => {
         if (!res) {
           await this.storage.clear();
-          if (this.storage.getId()) { return res; }
           this.nav.navigateRoot('/login');
+          if (this.storage.getId()) { return !res; }
         }
         return res;
     });

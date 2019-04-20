@@ -19,6 +19,7 @@ export class UserService {
 
   private user: User;
   public token = '';
+  public page = 0;
 
   constructor(private http: HttpService,
               private storage: StorageService) {
@@ -58,7 +59,8 @@ export class UserService {
   }
 
   public getFavoritesByUser(): Observable<FavoriteResponse> {
-    return this.http.get(this.API_FAVORITES);
+    this.page++;
+    return this.http.get(this.API_FAVORITES + '?page=' + this.page);
   }
 
   public removeFavorite(id: string): Observable<any> {
@@ -99,6 +101,10 @@ export class UserService {
             resolve(false);
       }));
     });
+  }
+
+  public resetPage(): void {
+    this.page = 0;
   }
 
 }

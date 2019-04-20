@@ -10,6 +10,10 @@ ion-segment-button {
   color: var(--ion-color-warning) !important;
 }
 
+.sc-ion-buttons-md-h {
+  position: absolute !important;
+}
+
 @media (max-height: 412px) {
   ion-slides {
     height: auto;

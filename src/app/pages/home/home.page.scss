@@ -2,8 +2,22 @@ ion-content {
   height: 100%;
 }
 
-ion-slide {
-  height: 100%;
-  position: absolute;
-  padding: 0 70px;
+.flex {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 80px);
+  align-items: center;
+  flex-wrap: wrap;
+  width: 350px;
+  margin: 0 auto;
+}
+
+img {
+  width: 275px;
+  height: 310px;
+}
+
+h4 {
+  position: relative;
+  margin-bottom: 20px;
 }

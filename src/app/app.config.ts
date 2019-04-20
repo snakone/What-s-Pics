@@ -22,7 +22,7 @@ export interface AppConfig extends ModuleConfig {
 export const APP_CONSTANTS: AppConfig = {
   TITLE: 'What\'s Pics',
   DEFAULT_LANGUAGE: 'en',
-  END_POINT: PRE,
+  END_POINT: PROD,
   APP_VERSION,
   NAVIGATION: {
     EMPTY: '',
