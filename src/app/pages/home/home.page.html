@@ -1,6 +1,6 @@
 <ion-content>
   <div *ngIf="!loading">
-    <ion-refresher slot="fixed" disabled="true"
+    <ion-refresher slot="fixed"
                    [disabled]="!refresh"
                    (ionRefresh)="doRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
@@ -8,12 +8,18 @@
 
     <app-post-grid *ngIf="posts.length > 0" [posts]="posts"></app-post-grid>
 
+
+
     <ion-infinite-scroll threshold="150px"
                         [disabled]="!scroll"
+                        *ngIf="posts.length > 0"
                         (ionInfinite)="onScroll($event)">
       <ion-infinite-scroll-content>
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
+      <div class="flex" *ngIf="posts.length === 0">
+        <img src="assets/img/not-found.png"/>
+      </div>
   </div>
   <app-loader *ngIf="loading"></app-loader>
 </ion-content>

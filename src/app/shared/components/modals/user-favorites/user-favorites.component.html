@@ -1,6 +1,5 @@
 <ion-header no-border>
   <ion-toolbar>
-    <ion-title>{{'your.favorites.title' | translate}}</ion-title>
     <ion-buttons slot="end">
       <ion-back-button defaultHref="tabs/profile"
                        (click)="close()"
@@ -19,14 +18,21 @@
                            [favorite]="favorite">
         </app-favorite-card>
       </ion-col>
+      <ion-infinite-scroll threshold="150px"
+                           [disabled]="!scroll"
+                           (ionInfinite)="onScroll($event)">
+        <ion-infinite-scroll-content>
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
     </ion-row>
   </ion-grid>
   <ion-slide *ngIf="!favorites">
     <ion-spinner></ion-spinner>
   </ion-slide>
   <div *ngIf="favorites">
-    <ion-slide *ngIf="favorites.length === 0">
-        {{'no.favorites' | translate}}
-    </ion-slide>
+    <div class="flex" *ngIf="favorites.length === 0">
+      <img src="assets/img/not-found.png"/>
+      <h4>Oops! No Favorites found</h4>
+    </div>
   </div>
 </ion-content>

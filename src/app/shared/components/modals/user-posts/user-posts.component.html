@@ -1,6 +1,5 @@
 <ion-header no-border>
   <ion-toolbar>
-    <ion-title>{{'your.post.title' | translate}}</ion-title>
     <ion-buttons slot="end">
       <ion-back-button defaultHref="tabs/profile"
                        (click)="close()"
@@ -18,14 +17,21 @@
         <app-user-post-card [post]="post">
         </app-user-post-card>
       </ion-col>
+      <ion-infinite-scroll threshold="150px"
+                          [disabled]="!scroll"
+                          (ionInfinite)="onScroll($event)">
+        <ion-infinite-scroll-content>
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
     </ion-row>
   </ion-grid>
   <ion-slide *ngIf="!posts">
     <ion-spinner></ion-spinner>
   </ion-slide>
   <div *ngIf="posts">
-    <ion-slide *ngIf="posts.length === 0">
-        {{'no.post' | translate}}
-    </ion-slide>
+    <div class="flex" *ngIf="posts.length === 0">
+      <img src="assets/img/not-found.png"/>
+      <h4>Oops! No Posts found</h4>
+    </div>
   </div>
 </ion-content>

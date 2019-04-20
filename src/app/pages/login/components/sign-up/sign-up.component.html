@@ -4,24 +4,24 @@
   <ion-list>
     <ion-item>
         <ion-label position="floating">{{'login.name' | translate}}</ion-label>
-          <ion-input name="name" value="Test" type="text" mode="md" formControlName="name">
+          <ion-input name="name" type="text" mode="md" formControlName="name">
         </ion-input>
       </ion-item>
     <ion-item>
       <ion-label position="floating">Email</ion-label>
-        <ion-input name="email" value="test1@gmail.com" mode="md" formControlName="email">
+        <ion-input name="email" mode="md" formControlName="email">
       </ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">{{'login.password' | translate}}</ion-label>
         <ion-input name="password" type="password" mode="md" formControlName="password"
-                  [ngClass]="{'valid': !matchError}" value="12345">
+                  [ngClass]="{'valid': !matchError}">
       </ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">{{'login.repeat.password' | translate}}</ion-label>
         <ion-input name="password2" type="password" mode="md" formControlName="password2"
-                   [ngClass]="matchError === true ? 'invalid' : 'valid'" value="12345">
+                   [ngClass]="matchError === true ? 'invalid' : 'valid'">
       </ion-input>
     </ion-item>
   </ion-list>

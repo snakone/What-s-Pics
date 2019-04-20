@@ -28,28 +28,18 @@ export class ProfilePage implements OnInit {
 
   ionViewDidEnter() {
     this.onResize();
-    this.getPostByUser();
+    this.getTotalLikes();
   }
 
   getUser(): void {
     this.user = this.userService.getUser();
   }
 
-  private getPostByUser() {
-    this.postService.getPostByUser()
-      .subscribe((res: PostResponse) => {
-        if (res.ok) {
-          this.getTotalLikes(res.posts);
-        }
+  private getTotalLikes() {
+    this.postService.getTotalLikes()
+      .subscribe((res: number) => {
+        this.likes = res;
       });
-  }
-
-  private getTotalLikes(posts: Post[]): number {
-    let total = 0;
-    posts.map(post => {
-      return total += post.likes;
-    });
-    return this.likes = total;
   }
 
   @HostListener('window:resize') onResize() {
