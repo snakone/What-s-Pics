@@ -1,0 +1,44 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-back-button routerLink="../tabs/profile"
+                       icon="close">
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content text-center>
+  <div class="item-list" *ngIf="posts.length > 0">
+    <ion-item-sliding class="item" *ngFor="let post of posts">
+      <ion-item>
+        <ion-label>
+          {{post.user.name}}
+          <p><strong>{{post.message}}</strong></p>
+        </ion-label>
+        <ion-label text-right>
+          {{post.created}}
+          <p class="created">Images: {{post.images.length}}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item-options>
+        <ion-item-option color="pink"
+                         (click)="confirmRemove(post._id)">
+          <ion-icon slot="icon-only"
+                    color="light"
+                    name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </div>
+  <div *ngIf="!posts">
+    <div class="flex">
+      <ion-spinner></ion-spinner>
+    </div>
+  </div>
+  <div *ngIf="posts">
+    <div class="flex" *ngIf="posts.length === 0">
+      <img src="assets/img/not-found.png"/>
+    </div>
+  </div>
+</ion-content>

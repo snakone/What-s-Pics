@@ -14,7 +14,8 @@
     <ion-row>
       <ion-col size="12" size-lg="6" size-md="6" size-sm="6" size-xs="12"
               *ngFor="let post of posts">
-        <app-user-post-card [post]="post">
+        <app-user-post-card [post]="post"
+                            (removed)="removePost($event)">
         </app-user-post-card>
       </ion-col>
       <ion-infinite-scroll threshold="150px"
@@ -31,7 +32,6 @@
   <div *ngIf="posts">
     <div class="flex" *ngIf="posts.length === 0">
       <img src="assets/img/not-found.png"/>
-      <h4>Oops! No Posts found</h4>
     </div>
   </div>
 </ion-content>

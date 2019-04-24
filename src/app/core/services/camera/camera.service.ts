@@ -75,7 +75,7 @@ export class CameraService {
     });
   }
 
-  getSignedRequest(file: string): Promise<string> {
+  private getSignedRequest(file: string): Promise<string> {
     return new Promise((res, rej) => {
       const xhr = new XMLHttpRequest();
       const name = new Date().valueOf().toString();
@@ -96,7 +96,7 @@ export class CameraService {
     });
   }
 
-  uploadFile(file: string, signedRequest, url: string): Promise<string> {
+  private uploadFile(file: string, signedRequest, url: string): Promise<string> {
     return new Promise((res, rej) => {
       const xhr = new XMLHttpRequest();
       xhr.open('PUT', signedRequest);

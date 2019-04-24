@@ -10,18 +10,18 @@ ion-segment-button {
   color: var(--ion-color-warning) !important;
 }
 
-.sc-ion-buttons-md-h {
-  position: absolute !important;
+.sign-in {
+  margin-top: 0;
 }
 
-@media (max-height: 412px) {
+@media (max-height: 580px) {
   ion-slides {
     height: auto;
     margin-top: 0;
   }
 
   .sign-in {
-    margin-top: 65px;
+    margin-top: 35px;
   }
 
   .sign-up {

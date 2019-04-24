@@ -5,7 +5,7 @@ import { Post } from '@shared/interfaces/interfaces';
   selector: 'app-post-grid',
   templateUrl: './post-grid.component.html',
   styleUrls: ['./post-grid.component.scss'],
-  })
+})
 
 export class PostGridComponent implements OnInit {
 
@@ -13,7 +13,6 @@ export class PostGridComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

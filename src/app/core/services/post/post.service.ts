@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
 import { Observable, Subject } from 'rxjs';
 import { APP_CONSTANTS } from '@app/app.config';
-import { PostResponse, Post } from '@app/shared/interfaces/interfaces';
-import { map, catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { PostResponse, Post, DeletePostResponse } from '@app/shared/interfaces/interfaces';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 
@@ -15,26 +14,35 @@ export class PostService {
   readonly API_POST_USER = APP_CONSTANTS.END_POINT + 'posts/user';
   readonly API_POST_LIKES = APP_CONSTANTS.END_POINT + 'posts/likes';
   stream: Subject<Post> = new Subject<Post>();
+  deleteStream: Subject<string> = new Subject<string>();
 
   constructor(private http: HttpService) {
     console.log('PostService');
    }
 
-  getPosts(): Observable<PostResponse> {
+  public getPosts(): Observable<PostResponse> {
     this.page++;
     return this.http.get(this.API_POST + '?page=' + this.page);
   }
 
-  createPost(post: Post): Observable<PostResponse> {
+  public getAllPosts(): Observable<PostResponse> {
+    return this.http.get(this.API_POST + '/all');
+  }
+
+  public createPost(post: Post): Observable<PostResponse> {
     return this.http.post(this.API_POST, post);
   }
 
-  getPostByUser(): Observable<PostResponse> {
+  public deletePost(id: string): Observable<DeletePostResponse> {
+    return this.http.delete(this.API_POST + '/' + id);
+  }
+
+  public getPostByUser(): Observable<PostResponse> {
     this.page++;
     return this.http.get(this.API_POST_USER + '?page=' + this.page);
   }
 
-  getTotalLikes(): Observable<number> {
+  public getTotalLikes(): Observable<number> {
     return this.http.get(this.API_POST_LIKES)
       .pipe(map((res: PostResponse) => {
         let total = 0;
@@ -45,11 +53,11 @@ export class PostService {
       }));
   }
 
-  streamPost(post: Post) {
+  public streamPost(post: Post): void {
     this.stream.next(post);
   }
 
-  resetPage(): void {
+  public resetPage(): void {
     this.page = 0;
   }
 

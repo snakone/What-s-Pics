@@ -33,10 +33,9 @@ export class PostCardComponent implements OnInit {
               private craft: CrafterService) { }
 
   ngOnInit() {
-    this.getImages();
   }
 
-  async checkCoords() {
+  async checkCoords(): Promise<void> {
     const lat = Number(this.post.coords.split(',')[0]);
     const lng = Number(this.post.coords.split(',')[1]);
     const modal = await this.modalController.create({
@@ -46,49 +45,36 @@ export class PostCardComponent implements OnInit {
         'lng': lng
       }
     });
-    return await modal.present();
+    await modal.present();
   }
 
-  getImages() {
-    if (this.post.images) {
-      this.post.images.forEach(image => {
-        this.http.get(image, { responseType: 'text' })
-          .subscribe(res => {
-            this.images.push(res);
-          });
-      });
-    }
-  }
-
-  like(id: string) {
+  like(id: string): void {
     this.user.doLike(id).subscribe((res: LikeResponse) => {
-      if (res.ok) {
-        this.craft.toast('Like added!');
-      }
+      if (res.ok) { this.craft.toast('like.added'); }
     }, ((err: HttpErrorResponse) => {
         if (err.status === 406) {
-          this.craft.toast('You already liked this Post!');
+          this.craft.toast('already.likes');
         } else {
-          this.craft.toast('Error Updating.');
+          this.craft.toast('error.updating.');
           console.log(err);
         }
-  }));
+      })
+    );
 }
 
-  favorite(id: string) {
+  favorite(id: string): void {
     this.user.addFavorite(id)
       .subscribe(async (res: FavoriteResponse) => {
-        if (res.ok) {
-          this.craft.toast('Post Added to Favorites!');
-        }
+        if (res.ok) { this.craft.toast('favorite.added'); }
       }, ((err: HttpErrorResponse) => {
           if (err.status === 406) {
-            this.craft.toast('Already on Favorites!');
+            this.craft.toast('already.favorites');
           } else {
-            this.craft.toast('Error Updating.');
+            this.craft.toast('error.updating');
             console.log(err);
           }
-    }));
+        })
+      );
   }
 
 }

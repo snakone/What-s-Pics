@@ -1,4 +1,11 @@
-import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  Input,
+  ViewChild
+} from '@angular/core';
 import { Avatar, AVATARS, SliderAvatarOpts } from './avatar.data';
 import { IonSlides } from '@ionic/angular';
 
@@ -11,11 +18,10 @@ import { IonSlides } from '@ionic/angular';
 export class PickAvatarComponent implements OnInit {
 
   @ViewChild(IonSlides) slides: IonSlides;
-  avatars: Avatar[] = AVATARS;
   @Output() avatar: EventEmitter<string> = new EventEmitter<string>();
   @Input() selected: string;
-
   slidesAvatarOpts = SliderAvatarOpts;
+  avatars: Avatar[] = AVATARS;
 
   constructor() { }
 
@@ -23,7 +29,7 @@ export class PickAvatarComponent implements OnInit {
     this.setAvatar();
   }
 
-  setAvatar() {
+  private setAvatar(): void {
     if (!this.selected) { return; }
     this.avatars.map(x => {
       if (x.img === this.selected) {
@@ -33,7 +39,7 @@ export class PickAvatarComponent implements OnInit {
     });
   }
 
-  pickAvatar(avatar: Avatar) {
+  pickAvatar(avatar: Avatar): void {
     this.avatar.emit(avatar.img);
     this.avatars.map(x => x.selected = false);
     avatar.selected = true;

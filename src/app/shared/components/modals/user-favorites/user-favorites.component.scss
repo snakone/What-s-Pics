@@ -1,9 +1,11 @@
 .sc-ion-back-button-md-h {
   --icon-padding-end: 0 !important;
+  margin-right: -6px;
 }
 
 ion-grid {
   max-width: 812px;
+  margin-bottom: 15px;
 }
 
 @media (min-width: 880px) {
@@ -26,16 +28,12 @@ ion-slide {
   flex-wrap: wrap;
   width: 350px;
   margin: 0 auto;
-  margin-top: -52px;
+  margin-top: -25px;
 }
 
 img {
   width: 275px;
   height: 310px;
-  margin-bottom: 20px;
-}
-
-h4 {
   margin-bottom: 20px;
 }
 

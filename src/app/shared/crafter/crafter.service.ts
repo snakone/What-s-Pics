@@ -5,7 +5,7 @@ import {
   PopoverController,
   ModalController
 } from '@ionic/angular';
-import { SettingsComponent } from '../components/settings/settings.component';
+import { SettingsComponent } from '@shared/components/settings/settings.component';
 import { TranslateService } from '@ngx-translate/core';
 import { ComponentRef } from '@ionic/core';
 
@@ -23,11 +23,11 @@ export class CrafterService {
       console.log('CrafterService');
   }
 
-  public close() {
+  public close(): void {
     this.popOverCtrl.dismiss();
   }
 
-  public async alert(message: string) {
+  public async alert(message: string): Promise<void> {
     message = this.translateMessage(message);
     const alert = await this.alertCtrl.create({
       header: 'What\'s Pics',
@@ -37,7 +37,7 @@ export class CrafterService {
     await alert.present();
   }
 
-  public async toast(message: string) {
+  public async toast(message: string): Promise<void> {
     message = this.translateMessage(message);
     const toast = await this.toastCtrl.create({
       message,
@@ -49,7 +49,7 @@ export class CrafterService {
     await toast.present();
   }
 
-  public async popOver(ev: any) {
+  public async popOver(ev: any): Promise<void> {
     const popover = await this.popOverCtrl.create({
       component: SettingsComponent,
       event: ev,
@@ -59,9 +59,8 @@ export class CrafterService {
     await popover.present();
   }
 
-  public async modal(component: ComponentRef, data?: any) {
+  public async modal(component: ComponentRef, data?: any): Promise<void> {
     if (this.modalCtrl.getTop()) { return; }
-    console.log(data);
     const modal = await this.modalCtrl.create({
       component,
       componentProps: data

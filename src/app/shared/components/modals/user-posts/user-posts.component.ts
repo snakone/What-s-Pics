@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Post, PostResponse } from '@app/shared/interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
 import { PostService } from '@core/services/post/post.service';
@@ -22,7 +22,7 @@ export class UserPostsComponent implements OnInit {
     this.getPostByUser();
   }
 
-  private getPostByUser(event?: any) {
+  private getPostByUser(event?: any): void {
     this.postService.getPostByUser()
       .subscribe((res: PostResponse) => {
         if (res.ok) {
@@ -33,7 +33,12 @@ export class UserPostsComponent implements OnInit {
             this.scroll = false;
           }
         }
-      });
+    });
+  }
+
+  removePost(id: string): void {
+    this.posts = this.posts.filter(x => x._id !== id);
+    this.postService.deleteStream.next(id);
   }
 
   close(): void {

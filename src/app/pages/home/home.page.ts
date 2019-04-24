@@ -17,18 +17,29 @@ export class HomePage implements OnInit {
 
   constructor(private postService: PostService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getPosts();
     this.getStream();
+    this.listenRemoves();
   }
 
-  getPosts(event?: any): void {
+  private getPosts(event?: any): void {
     if (!event) { this.loading = true; }
       this.postService.getPosts()
       .subscribe((res: PostResponse) => {
         if (res.ok) {
           this.posts.push(...res.posts);
           this.handleEvent(res.posts, event);
+        }
+    });
+  }
+
+  private listenRemoves(): void {
+    this.postService.resetPage();
+    this.postService.deleteStream
+      .subscribe((res: string) => {
+        if (res) {
+          this.posts = this.posts.filter(x => x._id !== res);
         }
     });
   }
@@ -48,7 +59,7 @@ export class HomePage implements OnInit {
     this.getPosts(event);
   }
 
-  private getStream() {
+  private getStream(): void {
     this.postService.stream
       .subscribe((res: Post) => {
         this.posts.unshift(res);

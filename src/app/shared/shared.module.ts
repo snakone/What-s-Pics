@@ -7,7 +7,6 @@ import { LanguageModule } from '@app/core/language/language.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     PipesModule,
@@ -24,8 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LanguageModule,
     FormsModule,
     ReactiveFormsModule
-  ],
-  providers: []
+  ]
 })
 
 export class SharedModule { }

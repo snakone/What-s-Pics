@@ -11,15 +11,13 @@ import { CameraService } from '@app/core/services/camera/camera.service';
 export class PostImagesComponent implements OnInit {
 
   @Input() temp: FileResponse[] = [];
-  @Output() delete: EventEmitter<FileResponse[]> = new EventEmitter<FileResponse[]>();
+  @Output() delete = new EventEmitter<FileResponse[]>();
 
   constructor(public camera: CameraService) { }
 
-  ngOnInit() {
-    console.log(this.temp);
-  }
+  ngOnInit() {}
 
-  remove(i: number) {
+  remove(i: number): void {
     this.temp.splice(i, 1);
     this.delete.emit(this.temp);
   }

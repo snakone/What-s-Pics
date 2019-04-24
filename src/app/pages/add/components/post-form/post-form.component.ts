@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Post, PostResponse } from '@app/shared/interfaces/interfaces';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { CrafterService } from '@app/shared/crafter/crafter.service';
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { FileResponse } from '@app/shared/interfaces/interfaces';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post-form',
@@ -17,7 +18,6 @@ import { HttpClient } from '@angular/common/http';
 export class PostFormComponent implements OnInit, OnChanges {
 
   @Input() submit: boolean;
-
   temp: FileResponse[] = [];
   post: Post = {};
   postForm: FormGroup;
@@ -36,7 +36,7 @@ export class PostFormComponent implements OnInit, OnChanges {
     this.createSignUpForm();
   }
 
-  createSignUpForm(): void {
+  private createSignUpForm(): void {
     this.postForm = new FormGroup({
        message: new FormControl(null,
                                   [Validators.required,
@@ -73,7 +73,7 @@ export class PostFormComponent implements OnInit, OnChanges {
     this.post.images = [];
   }
 
-  public toogleCoords(event: CustomEvent) {
+  toogleCoords(event: CustomEvent): void {
     if (!event.detail.checked) {
       this.post.coords = '';
       return;
@@ -82,12 +82,12 @@ export class PostFormComponent implements OnInit, OnChanges {
     this.getCoords();
   }
 
-  private getCoords() {
+  private getCoords(): void {
     this.geolocation.getCurrentPosition()
      .then((res: Geoposition) => {
         setTimeout(() => {
           this.spinner = false;
-        }, 5000);
+        }, 3000);
         const coords = `${res.coords.latitude},${res.coords.longitude}`;
         this.post.coords = coords;
      }).catch((error) => {
@@ -96,7 +96,7 @@ export class PostFormComponent implements OnInit, OnChanges {
      });
   }
 
-  public openCamera() {
+  openCamera(): void {
     if (this.temp.length >= 5) {
       this.craft.toast('max.pictures');
       return;
@@ -108,7 +108,7 @@ export class PostFormComponent implements OnInit, OnChanges {
           return;
         }
         this.getS3Image(res.image)
-          .subscribe(image => {
+          .subscribe((image: string) => {
             this.post.images.unshift(res.image);
             res.image = image;
             this.temp.unshift(res);
@@ -119,7 +119,7 @@ export class PostFormComponent implements OnInit, OnChanges {
       });
   }
 
-  public openSource() {
+  openSource(): void {
     if (this.temp.length >= 5) {
       this.craft.toast('max.pictures');
       return;
@@ -131,7 +131,7 @@ export class PostFormComponent implements OnInit, OnChanges {
           return;
         }
         this.getS3Image(res.image)
-        .subscribe(image => {
+        .subscribe((image: string) => {
           this.post.images.unshift(res.image);
           res.image = image;
           this.temp.unshift(res);
@@ -142,7 +142,7 @@ export class PostFormComponent implements OnInit, OnChanges {
       });
   }
 
-  getS3Image(image: string) {
+  getS3Image(image: string): Observable<string> {
     return this.http.get(image, { responseType: 'text' });
   }
 

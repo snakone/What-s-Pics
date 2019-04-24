@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Post, FavoriteResponse, Favorite } from '@app/shared/interfaces/interfaces';
+import { Component, OnInit } from '@angular/core';
+import { FavoriteResponse, Favorite } from '@app/shared/interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
 import { UserService } from '@core/services/user/user.service';
-import { PostService } from '../../../../core/services/post/post.service';
 
 @Component({
   selector: 'app-user-favorites',
@@ -16,16 +15,15 @@ export class UserFavoritesComponent implements OnInit {
   scroll = true;
 
   constructor(private modal: ModalController,
-              private userService: UserService,
-              private postService: PostService) { }
+              private user: UserService) { }
 
   ngOnInit() {
-    this.userService.resetPage();
+    this.user.resetPage();
     this.getFavoritesByUser();
   }
 
-  private getFavoritesByUser(event?: any) {
-    this.userService.getFavoritesByUser()
+  private getFavoritesByUser(event?: any): void {
+    this.user.getFavoritesByUser()
       .subscribe((res: FavoriteResponse) => {
         if (res.ok) {
           if (!this.favorites) { this.favorites = []; }
@@ -35,10 +33,10 @@ export class UserFavoritesComponent implements OnInit {
             this.scroll = false;
           }
         }
-      });
+    });
   }
 
-  remove(id: string) {
+  remove(id: string): void {
     this.favorites = this.favorites.filter(x => {
       return x._id !== id;
     });

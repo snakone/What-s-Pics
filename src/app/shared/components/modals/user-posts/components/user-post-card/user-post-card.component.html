@@ -1,9 +1,9 @@
 <ion-card class="animated fadeIn">
-  <ion-slides #slides *ngIf="images.length > 0"
+  <ion-slides #slides *ngIf="post.images.length > 0"
               pager="true"
               [options]="slideOpts">
-    <ion-slide *ngFor="let image of images"
-                [style]="image | sanitizer">
+    <ion-slide *ngFor="let image of post.images"
+               [style]="(image | s3Image | async) | sanitizer">
     </ion-slide>
   </ion-slides>
 
@@ -20,6 +20,9 @@
       </ion-button>
       <ion-button (click)="favorite(post._id)">
         <ion-icon color="light" name="star"></ion-icon>
+      </ion-button>
+      <ion-button (click)="confirmRemove(post._id)">
+        <ion-icon color="light" name="trash"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-item>

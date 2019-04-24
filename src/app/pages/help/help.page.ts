@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { StorageService } from '@app/core/storage/storage.service';
-import { UserService } from '@app/core/services/services.index';
-import { PostService } from '@core/services/post/post.service';
-import { NavController } from '@ionic/angular';
 import { FAQ } from '@app/shared/interfaces/interfaces';
 import { QUESTIONS } from './faq.data';
 
@@ -17,8 +13,7 @@ export class HelpPage implements OnInit {
   questions: FAQ[] = QUESTIONS;
   arrow = 'ios-arrow-forward';
 
-  constructor(private storage: StorageService,
-              private nav: NavController) { }
+  constructor() { }
 
   ngOnInit() {
     this.questions[0].arrow = 'ios-arrow-down';

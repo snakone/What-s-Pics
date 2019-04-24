@@ -8,8 +8,6 @@
 
     <app-post-grid *ngIf="posts.length > 0" [posts]="posts"></app-post-grid>
 
-
-
     <ion-infinite-scroll threshold="150px"
                         [disabled]="!scroll"
                         *ngIf="posts.length > 0"

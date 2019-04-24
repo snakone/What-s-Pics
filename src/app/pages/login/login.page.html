@@ -1,6 +1,16 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="openSettings($event)"
+                  color="light">
+        <ion-icon slot="icon-only" name="settings"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content text-center>
   <ion-slides #slides [options]="slidesOpts" class="swiper-no-swiping">
-
     <ion-slide class="animated fadeIn">
       <app-sign-in class="sign-in"></app-sign-in>
     </ion-slide>

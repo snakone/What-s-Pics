@@ -31,7 +31,7 @@ export class SignInComponent implements OnInit {
     this.rememberMe();
    }
 
-  createSignUpForm(): void {
+  private createSignUpForm(): void {
     this.signInForm = new FormGroup({
        email: new FormControl(null, [Validators.required,
                                      Validators.email,
@@ -42,12 +42,12 @@ export class SignInComponent implements OnInit {
                                      Validators.maxLength(25)])});
   }
 
-  getUser(): void {
+  private getUser(): void {
     this.user = this.userService.getUser();
   }
 
-  onSubmit() {
-    if (this.signInForm.invalid) { return false; }
+  onSubmit(): void {
+    if (this.signInForm.invalid) { return; }
     const email = this.signInForm.value.email;
     const password = this.signInForm.value.password;
     this.signIn(email, password);
@@ -79,7 +79,7 @@ export class SignInComponent implements OnInit {
     this.nav.navigateRoot('/tabs/home');
   }
 
-  private rememberMe() {
+  private rememberMe(): void {
     if (this.storage.getRemember() && this.storage.getId()) {
       this.userService.getUserById(this.storage.getId())
         .subscribe((res: UserResponse) => {
