@@ -29,7 +29,7 @@ export class SignUpComponent implements OnInit {
     this.createSignUpForm();
   }
 
-  createSignUpForm(): void {
+  private createSignUpForm(): void {
     this.signUpForm = new FormGroup({
       name: new FormControl(null, [Validators.required,
                                    Validators.minLength(3),
@@ -46,8 +46,8 @@ export class SignUpComponent implements OnInit {
     }, { validators: this.theyMatchError('password', 'password2')});
   }
 
-  onSubmit() {
-    if (this.signUpForm.invalid) { return false; }
+  onSubmit(): void {
+    if (this.signUpForm.invalid) { return; }
     const user: User = this.signUpForm.value;
     user.avatar = this.avatar;
     this.signUp(user);
@@ -71,7 +71,7 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  theyMatchError(one: string, two: string) {
+  private theyMatchError(one: string, two: string) {
     return (group: FormGroup) => {
       const p = group.controls[one].value;
       const m = group.controls[two].value;

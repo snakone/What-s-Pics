@@ -9,11 +9,11 @@
     </ion-label>
   </ion-item>
 
-  <ion-slides #slides *ngIf="images.length > 0"
+  <ion-slides #slides *ngIf="favorite.post.images.length > 0"
               pager="true"
               [options]="slideOpts">
-    <ion-slide *ngFor="let image of images"
-                [style]="image | sanitizer">
+    <ion-slide *ngFor="let image of favorite.post.images"
+               [style]="(image | s3Image | async) | sanitizer">
     </ion-slide>
   </ion-slides>
 

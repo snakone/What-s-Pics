@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { APP_CONSTANTS } from '@app/app.config';
 
 import { timer } from 'rxjs';
-import { StorageService } from './core/storage/storage.service';
+import { StorageService } from '@core/storage/storage.service';
 
 @Component({
   selector: 'app-root',

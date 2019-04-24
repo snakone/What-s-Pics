@@ -6,7 +6,7 @@ import { InjectionToken } from '@angular/core';
 const DEV = 'http://localhost:3000/';
 const PRE = 'http://192.168.1.97:3000/';
 const PROD = 'https://what-the-pics.herokuapp.com/';
-const APP_VERSION = '0.2.2-dev';
+const APP_VERSION = '0.3.3-dev';
 
 export interface ModuleConfig {
   NAVIGATION?: any;
@@ -27,7 +27,8 @@ export const APP_CONSTANTS: AppConfig = {
   NAVIGATION: {
     EMPTY: '',
     ROOT: '',
-    HOME: 'HomePage'
+    HOME: 'HomePage',
+    LOGIN: 'LoginPage'
   }
 };
 

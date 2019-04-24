@@ -1,6 +1,7 @@
 {
   "login.password": "Password",
   "login.button": "Login",
+  "login.email": "Email",
   "login.sign.in": "Sign In",
   "login.sign.up": "Sign Up",
   "login.remember": "Remember Me?",
@@ -59,7 +60,7 @@
   "no.favorites": "You have no Favorites actually.",
   "no.posts": "You have no Posts actually.",
   "likes.likes": "Likes",
-  "your.posts": "View the Post you made",
+  "your.posts": "View your Posts",
   "your.likes": "Your Posts total likes",
   "danger.zone": "Danger Zone",
   "delete.account": "Delete your Account",
@@ -74,5 +75,20 @@
   "help.create": "Who made What's Pics?",
   "help.create.text": "It's a plessure to help You. I'm <b>Sergi Martínez</b>, <b>Frontend Developer</b> with frameworks such as <b>Angular</b>, <b>Ionic</b>, <b>Cordova</b>. If You want to know more about me, You may visit my <a href='https://www.linkedin.com/in/sergio-martinez-9b933a13a/' target='_NEW'>Linkedln</a> page.",
   "help.right": "Rights and Services",
-  "help.right.text": "This Application is totally <b>free</b>, you have the right to use it freely, following the rules of uploading pictures and behaviour policy. The code is open source and You can find it on <a href='https://github.com/snakone/What-s-Pics' target='_NEW'>Github</a>.<br><br>Our service offers the ability to upload pictures to the <b>cloud</b> so You can see then at anytime."
+  "help.right.text": "This Application is totally <b>free</b>, you have the right to use it freely, following the rules of uploading pictures and behaviour policy. The code is open source and You can find it on <a href='https://github.com/snakone/What-s-Pics' target='_NEW'>Github</a>.<br><br>Our service offers the ability to upload pictures to the <b>cloud</b> so You can see then at anytime.",
+  "remove.favorite": "Remove Favorite",
+  "are.you.sure": "Are You sure?",
+  "button.cancel": "Cancel",
+  "are.you.sure.delete": "This action cannot be undone.",
+  "deleted.user": "Account deleted. Hope to see You soon!",
+  "favorite.added": "Favorite added successfully!",
+  "favorite.removed": "Favorite removed!",
+  "remove.post": "Remove Post",
+  "post.removed": "Post removed!",
+  "already.favorites": "Already on Favorites!",
+  "already.likes": "You liked this Post Already!",
+  "post.added": "Post added successfully!",
+  "error.updating": "Error Updating",
+  "like.added": "Like added!",
+  "profile.updated": "Profile updated!"
 }

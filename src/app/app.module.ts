@@ -28,15 +28,20 @@ export function Factory(provider: StorageService) {
     AppRoutingModule,
     CoreModule,
     ComponentsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js',
+                                { enabled: environment.production })
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: APP_CONFIG, useValue: APP_CONSTANTS },
-    { provide: APP_INITIALIZER, useFactory: Factory, deps: [StorageService], multi: true }
-
+    {
+      provide: APP_INITIALIZER,
+      useFactory: Factory,
+      deps: [StorageService],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

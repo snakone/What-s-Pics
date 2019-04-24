@@ -7,9 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     CommonModule,
     TranslateModule
-  ],
-  declarations: [],
-  exports: []
+  ]
 })
 
 export class LanguageModule {

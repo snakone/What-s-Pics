@@ -40,7 +40,7 @@
         <h3>{{'danger.zone' | translate}}</h3>
       </ion-label>
     </ion-list-header>
-    <ion-item detail>
+    <ion-item detail (click)="confirmDelete()">
       <ion-text color="danger">
         <strong>{{'delete.account' | translate}}</strong>
       </ion-text>
@@ -50,7 +50,7 @@
               color="primary"
               shape="round"
               mode="md"
-              (click)="logout()">
+              (click)="logout(false)">
         {{'profile.logout' | translate}}
   </ion-button>
 </div>

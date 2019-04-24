@@ -1,9 +1,4 @@
 <ion-content padding text-center>
-  <!-- <ion-button routerLink="/login">LOGIN</ion-button>
-  <ion-button (click)="remove()">STORAGE</ion-button>
-  <ion-button routerLink="/tutorial">TUTORIAL</ion-button>
-  <ion-button (click)="logout()">LOG OUT</ion-button> -->
-
   <ion-slide class="animated fadeIn">
     <div class="help">
       <div class="header">
@@ -11,18 +6,18 @@
         <span>{{'help.faq' | translate}}</span>
       </div>
       <ion-list>
-          <div *ngFor="let q of questions">
-            <ion-item (click)="expand(q)">
-              <ion-label class="question" [ngClass]="{'selected': !q.collapsed}">
-                {{q.question | translate}}
-              </ion-label>
-              <ion-icon slot="end" color="light" [name]="q.arrow"></ion-icon>
-            </ion-item>
-            <ion-item lines="none" class="animated fadeIn" *ngIf="!q.collapsed">
-              <p [innerHTML]="q.answer | translate"></p>
-            </ion-item>
-          </div>
-        </ion-list>
-      </div>
+        <div *ngFor="let q of questions">
+          <ion-item (click)="expand(q)">
+            <ion-label class="question" [ngClass]="{'selected': !q.collapsed}">
+              {{q.question | translate}}
+            </ion-label>
+            <ion-icon slot="end" color="light" [name]="q.arrow"></ion-icon>
+          </ion-item>
+          <ion-item lines="none" class="animated fadeIn" *ngIf="!q.collapsed">
+            <p [innerHTML]="q.answer | translate"></p>
+          </ion-item>
+        </div>
+      </ion-list>
+    </div>
   </ion-slide>
 </ion-content>

@@ -15,9 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class SettingsComponent implements OnInit {
 
   @Output() close: EventEmitter<any> = new EventEmitter<any>();
-
   settings: AppStorage;
-
   language: SettingsOpts[] = LanguageOpts;
   tutorial: SettingsOpts[] = TutorialOpts;
 
@@ -30,7 +28,7 @@ export class SettingsComponent implements OnInit {
     this.settings = this.storage.get();
   }
 
-  async onSubmit(settingsForm: NgForm) {
+  async onSubmit(settingsForm: NgForm): Promise<void> {
     const l: string = settingsForm.value.language;
     const t: boolean = settingsForm.value.tutorial;
     await this.handler(l, t) ? this.toast('settings.saved') :
@@ -52,7 +50,7 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  private async toast(message: string) {
+  private async toast(message: string): Promise<void> {
     message = this.translateMessage(message);
     const toast = await this.toastCtrl.create({
       message,
@@ -61,7 +59,7 @@ export class SettingsComponent implements OnInit {
       position: 'top',
       cssClass: 'toast-sheet'
     });
-    toast.present();
+    await toast.present();
   }
 
   private translateMessage(msg: string): string {

@@ -15,14 +15,14 @@ export class LanguageService {
     console.log('LanguageService');
   }
 
-  private setDefault() {
+  private setDefault(): void {
     if (!this.translateService.getDefaultLang()) {
       this.translateService.setDefaultLang(this.appConfig.DEFAULT_LANGUAGE);
     }
     this.translateService.use(this.appConfig.DEFAULT_LANGUAGE);
   }
 
-  public change(lang: string) {
+  public change(lang: string): void {
     this.translateService.use(lang);
   }
 
@@ -30,7 +30,7 @@ export class LanguageService {
     return this.translateService.currentLang;
   }
 
-  private async loadStorageLanguage() {
+  private loadStorageLanguage(): void {
     const language = this.storage.getLanguage();
     if (language) {
       this.translateService.use(language);

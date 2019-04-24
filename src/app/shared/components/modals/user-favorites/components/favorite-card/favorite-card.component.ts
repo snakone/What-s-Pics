@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { MapComponent } from '@app/shared/components/map/map.component';
 import { UserService } from '@app/core/services/user/user.service';
 import { CrafterService } from '@app/shared/crafter/crafter.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-favorite-card',
@@ -29,10 +30,9 @@ export class FavoriteCardComponent implements OnInit {
               private user: UserService,
               private craft: CrafterService,
               private alertCtrl: AlertController,
-              private http: HttpClient) { }
+              private translate: TranslateService) { }
 
   ngOnInit() {
-    this.getImages();
   }
 
   async checkCoords() {
@@ -52,34 +52,20 @@ export class FavoriteCardComponent implements OnInit {
     this.user.removeFavorite(this.favorite._id)
       .subscribe(res => {
         if (res.ok) {
-          this.craft.toast('Favorite removed!');
+          this.craft.toast('favorite.removed');
           this.removed.emit(this.favorite._id);
         }
       });
   }
 
-  getImages() {
-    if (this.favorite.post.images) {
-      this.favorite.post.images.forEach(image => {
-        this.http.get(image, { responseType: 'text' })
-          .subscribe(res => {
-            this.images.push(res);
-          });
-      });
-    }
-  }
-
-  async confirm() {
+  async confirm(): Promise<void> {
     const alert = await this.alertCtrl.create({
-      header: 'Remove Favorite',
-      message: 'Are You sure?',
+      header: this.translateMessage('remove.favorite'),
+      message: this.translateMessage('are.you.sure'),
       buttons: [
         {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancelled');
-          }
+          text: this.translateMessage('button.cancel'),
+          role: 'cancel'
         }, {
           text: 'Ok',
           handler: () => {
@@ -88,8 +74,12 @@ export class FavoriteCardComponent implements OnInit {
         }
       ]
     });
-
     await alert.present();
+  }
+
+  private translateMessage(msg: string): string {
+    const message = this.translate.instant(msg);
+    return message;
   }
 
 }

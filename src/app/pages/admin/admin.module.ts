@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { Error404Page } from './error404.page';
+import { AdminPage } from './admin.page';
+import { ComponentsModule } from '@app/shared/components/components.module';
 
 const routes: Routes = [
-  { path: '', component: Error404Page }
+  { path: '', component: AdminPage }
 ];
 
 @NgModule({
@@ -14,9 +15,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [Error404Page]
+  declarations: [AdminPage]
 })
 
-export class Error404PageModule {}
+export class AdminPageModule {}

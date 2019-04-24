@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { INTRO_SLIDES} from './slides.data';
-import { IonSlides, NavController} from '@ionic/angular';
-import { StorageService } from '../../core/storage/storage.service';
+import { INTRO_SLIDES, Slide } from './slides.data';
+import { IonSlides, NavController } from '@ionic/angular';
+import { StorageService } from '@core/storage/storage.service';
 import { SLIDES_OPTIONS } from '@app/shared/interfaces/interfaces';
 
 @Component({
@@ -13,7 +13,7 @@ import { SLIDES_OPTIONS } from '@app/shared/interfaces/interfaces';
 export class TutorialPage implements OnInit {
 
   @ViewChild('slider') slider: IonSlides;
-  slides: any[] = INTRO_SLIDES;
+  slides: Slide[] = INTRO_SLIDES;
   sliderOptions = SLIDES_OPTIONS;
   index: number;
   checkbox = true;
@@ -24,7 +24,7 @@ export class TutorialPage implements OnInit {
   ngOnInit() {
   }
 
-  async getIndex() {
+  async getIndex(): Promise<void> {
     this.index = await this.slider.getActiveIndex();
   }
 

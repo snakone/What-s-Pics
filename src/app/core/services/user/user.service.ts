@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { APP_CONSTANTS } from '@app/app.config';
 import { HttpService } from '../http/http.service';
-import { User, UserResponse, Post, FavoriteResponse} from '@app/shared/interfaces/interfaces';
+import { User, UserResponse, FavoriteResponse} from '@app/shared/interfaces/interfaces';
 import { StorageService } from '@app/core/storage/storage.service';
-import { map } from 'rxjs/operators';
-import { Observable, throwError} from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
-import { LikeResponse } from '../../../shared/interfaces/interfaces';
+import { LikeResponse } from '@shared/interfaces/interfaces';
 
 @Injectable()
 
@@ -31,7 +30,7 @@ export class UserService {
     return { ...this.user };
   }
 
-  public loadUser(): Promise<any> {
+  public loadUser(): Promise<void> {
     return new Promise((resolve, rej) => {
       const id = this.storage.getId();
       if (id) {
@@ -63,7 +62,7 @@ export class UserService {
     return this.http.get(this.API_FAVORITES + '?page=' + this.page);
   }
 
-  public removeFavorite(id: string): Observable<any> {
+  public removeFavorite(id: string): Observable<FavoriteResponse> {
     return this.http.delete(this.API_FAVORITES, null, new HttpParams().set('id', id));
   }
 
@@ -83,7 +82,11 @@ export class UserService {
     this.user = user;
   }
 
-  public logout() {
+  public deleteUser(): Observable<UserResponse> {
+    return this.http.delete(this.API_USERS);
+  }
+
+  public logout(): void {
     this.user = null;
   }
 

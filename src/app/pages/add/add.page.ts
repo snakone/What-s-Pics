@@ -13,10 +13,9 @@ export class AddPage implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  createPost() {
+  createPost(): void {
     this.submit = !this.submit;
   }
 

@@ -34,6 +34,14 @@ export interface FileResponse {
   size: number;
 }
 
+export interface DeletePostResponse {
+  ok: boolean;
+  message: string;
+  post: Post;
+  favorite: Favorite;
+  like: Like;
+}
+
 export interface Post {
   _id?: string;
   images?: string[];
@@ -50,6 +58,7 @@ export interface User {
   name: string;
   email: string;
   password: string;
+  account: string;
 }
 
 export interface Favorite {
@@ -75,8 +84,7 @@ export class AppStorage {
   constructor(token: string = STORAGE_CONSTANTS.TOKEN,
               lang: string = STORAGE_CONSTANTS.LANGUAGE,
               tutorial: boolean = STORAGE_CONSTANTS.TUTORIAL,
-              remember: boolean = true
-              ) {
+              remember: boolean = true) {
     this.token = token;
     this.lang = lang;
     this.tutorial = tutorial;
@@ -100,4 +108,4 @@ export const SLIDES_OPTIONS: any = {
     clickable: true,
   },
   zoom: false
- };
+};

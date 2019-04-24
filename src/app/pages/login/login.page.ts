@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
+import { CrafterService } from '@app/shared/crafter/crafter.service';
 
 @Component({
   selector: 'app-login',
@@ -10,22 +11,18 @@ import { IonSlides } from '@ionic/angular';
 export class LoginPage implements OnInit {
 
   @ViewChild(IonSlides) slides: IonSlides;
-
-  slidesOpts = {
-    effect: 'flip',
-    zoom: false
-  };
-
+  settings = true;
+  slidesOpts = { effect: 'flip', zoom: false };
   colorIn = 'light';
   colorUp = 'medium';
 
-  constructor() { }
+  constructor(private craft: CrafterService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  segmentChanged(event: any) {
+  segmentChanged(event: any): void {
     const index = Number(event.value);
+    index === 1 ? this.settings = false : this.settings = true;
     this.slides.slideTo(index);
     this.changeColor(index);
   }
@@ -38,6 +35,10 @@ export class LoginPage implements OnInit {
       this.colorIn = 'medium';
       this.colorUp = 'light';
     }
+  }
+
+    openSettings(event: any): void {
+    this.craft.popOver(event);
   }
 
 }

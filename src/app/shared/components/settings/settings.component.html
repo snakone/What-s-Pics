@@ -10,7 +10,7 @@
           <ion-select-option *ngFor="let l of language"
                             [value]="l.value"
                             [selected]="settings.lang == l.value">
-                            {{l.label | translate}}
+                          {{l.label | translate}}
           </ion-select-option>
         </ion-select>
       </ion-item>
@@ -20,7 +20,7 @@
           <ion-select-option *ngFor="let t of tutorial"
                             [value]="t.value"
                             [selected]="settings.tutorial == t.value">
-                            {{t.label | translate}}
+                          {{t.label | translate}}
           </ion-select-option>
         </ion-select>
       </ion-item>

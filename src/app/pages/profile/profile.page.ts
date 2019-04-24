@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
-import { User, SLIDES_OPTIONS, PostResponse, Post } from '@app/shared/interfaces/interfaces';
+import { User, SLIDES_OPTIONS } from '@app/shared/interfaces/interfaces';
 import { UserService } from '@app/core/services/user/user.service';
 import { CrafterService } from '@app/shared/crafter/crafter.service';
 import { IonSlides } from '@ionic/angular';
-import { PostService } from '../../core/services/post/post.service';
+import { PostService } from '@core/services/post/post.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,8 +13,8 @@ import { PostService } from '../../core/services/post/post.service';
 
 export class ProfilePage implements OnInit {
 
-  user: User;
   @ViewChild(IonSlides) slides: IonSlides;
+  user: User;
   sliderOptions = SLIDES_OPTIONS;
   likes: number;
 
@@ -26,28 +26,28 @@ export class ProfilePage implements OnInit {
     this.getUser();
   }
 
-  ionViewDidEnter() {
+  ionViewDidEnter(): void {
     this.onResize();
     this.getTotalLikes();
   }
 
-  getUser(): void {
+  private getUser(): void {
     this.user = this.userService.getUser();
   }
 
-  private getTotalLikes() {
+  private getTotalLikes(): void {
     this.postService.getTotalLikes()
-      .subscribe((res: number) => {
+     .subscribe((res: number) => {
         this.likes = res;
-      });
+    });
   }
 
   @HostListener('window:resize') onResize() {
     if (this.slides) { setTimeout(() => this.slides.update(), 200); }
   }
 
-  openSettings(event: any) {
-    this.craft.popOver(event);
+  openSettings(event: any): Promise<void> {
+    return this.craft.popOver(event);
   }
 
 }

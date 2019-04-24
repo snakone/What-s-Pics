@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User, UserResponse } from '@app/shared/interfaces/interfaces';
 import { UserService } from '@app/core/services/user/user.service';
@@ -27,7 +27,7 @@ export class UpdateFormComponent implements OnInit {
     this.selected = this.user.avatar;
   }
 
-  createUpdateForm(): void {
+  private createUpdateForm(): void {
     this.updateForm = new FormGroup({
        email: new FormControl(this.user.email || null,
                              [Validators.required,
@@ -42,25 +42,26 @@ export class UpdateFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (this.updateForm.invalid) { return false; }
+  onSubmit(): void {
+    if (this.updateForm.invalid) { return; }
     const user: User = this.updateForm.value;
     user.avatar = this.selected;
     this.updateUser(user);
   }
 
-  updateUser(user: User) {
+  private updateUser(user: User): void {
     this.userService.updateUser(user)
       .subscribe(async (res: UserResponse) => {
         if (res.ok) {
           this.updated.emit(res.user);
           await this.storage.save('token', res.token);
-          this.craft.toast('Profile Updated!');
+          this.craft.toast('profile.updated');
         }
       }, (err => {
-          this.craft.toast('Error Updating.');
+          this.craft.toast('error.updating');
           console.log(err);
-    }));
+        })
+      );
   }
 
 }

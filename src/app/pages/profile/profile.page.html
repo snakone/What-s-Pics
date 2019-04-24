@@ -1,5 +1,11 @@
 <ion-header no-border>
   <ion-toolbar>
+    <ion-buttons slot="start" *ngIf="user.account === 'Admin'">
+      <ion-button routerLink="/admin"
+                  color="light">
+        <ion-icon slot="icon-only" name="key"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="openSettings($event)"
                   color="light">
